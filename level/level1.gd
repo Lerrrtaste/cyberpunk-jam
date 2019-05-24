@@ -14,3 +14,5 @@ func _ready() -> void:
 	inst = factory.new_tower(0)
 	if(is_instance_valid(inst)):
 		$TowerPos3.add_child(inst)
+	
+	planning.setup(avail_troops,{0:3})

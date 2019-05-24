@@ -47,19 +47,19 @@ func create_troopDB()->void:
 	troop_tex[10] = null
 	troop_tex[11] = null
 	
-	troop_attack.resize(12)
-	troop_attack[0] = preload("res://troop/attacks/troop_attack_base.tscn")
-	troop_attack[1] = null
-	troop_attack[2] = null
-	troop_attack[3] = null
-	troop_attack[4] = null
-	troop_attack[5] = null
-	troop_attack[6] = null
-	troop_attack[7] = null
-	troop_attack[8] = null
-	troop_attack[9] = null
-	troop_attack[10] = null
-	troop_attack[11] = null
+#	troop_attack.resize(12)
+#	troop_attack[0] = preload("res://troop/attacks/troop_attack_base.tscn")
+#	troop_attack[1] = null
+#	troop_attack[2] = null
+#	troop_attack[3] = null
+#	troop_attack[4] = null
+#	troop_attack[5] = null
+#	troop_attack[6] = null
+#	troop_attack[7] = null
+#	troop_attack[8] = null
+#	troop_attack[9] = null
+#	troop_attack[10] = null
+#	troop_attack[11] = null
 	
 	troop_ability.resize(12)
 	troop_ability[0] = preload("res://troop/abilities/troop_ability_base.tscn")
@@ -174,10 +174,10 @@ func new_troop(id:int)->Node:
 		return null
 	var inst = troop_scn.instance()
 	inst.name = troop_name[id]
-	if(is_instance_valid(troop_attack[id])):
-		var inst_attack = troop_attack[id].instance()
-		inst.add_child(inst_attack)
-		inst.attack = inst.get_node("Attack")
+#	if(is_instance_valid(troop_attack[id])):
+#		var inst_attack = troop_attack[id].instance()
+#		inst.add_child(inst_attack)
+#		inst.attack = inst.get_node("Attack")
 	if(is_instance_valid(troop_ability[id])):
 		var inst_ability = troop_ability[id].instance()
 		inst.add_child(inst_ability)

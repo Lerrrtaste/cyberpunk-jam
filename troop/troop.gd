@@ -3,7 +3,7 @@ extends Node2D
 var area2d
 var collision_shape
 var sprite
-var attack = null
+#var attack = null
 var ability = null
 var tower_prio:Dictionary
 
@@ -20,8 +20,8 @@ func set_noderef()->void:
 	sprite = $Sprite
 
 func _process(delta: float) -> void:
-	if(is_instance_valid(attack)):
-		attack.step(delta)
+#	if(is_instance_valid(attack)):
+#		attack.step(delta)
 	if(is_instance_valid(ability)):
 		ability.step(delta)
 	var target_type = typeof(target)

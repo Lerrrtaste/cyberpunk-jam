@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/planning_unitSlot.gd" type="Script" id=2]
+
+[node name="Unit Slot" type="Panel"]
+margin_right = 64.0
+margin_bottom = 130.0
+script = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 64.0
+margin_bottom = 64.0
+
+[node name="Name" type="Label" parent="."]
+margin_top = 64.0
+margin_right = 64.0
+margin_bottom = 90.0
+text = "NAME"
+align = 1
+valign = 1
+
+[node name="Inc" type="Button" parent="."]
+margin_left = 4.0
+margin_top = 90.0
+text = "+"
+
+[node name="Dec" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -24.0
+margin_top = 90.0
+margin_right = -4.0
+margin_bottom = 110.0
+text = "-"
+
+[node name="Avail" type="Label" parent="."]
+margin_top = 115.0
+margin_right = 64.0
+margin_bottom = 22.0
+text = "x of x"
+align = 1
+valign = 1
+
+[node name="Info" type="Button" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 17.0
+margin_bottom = 20.0
+text = "i"
