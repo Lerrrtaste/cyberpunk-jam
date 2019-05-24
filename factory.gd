@@ -1,21 +1,25 @@
-extends Object
+extends Node
 
+var tower_scn:PackedScene = preload("res://tower/tower.tscn")
 var tower_name:Array
-var tower_text_body:Array
-var tower_text_barrel:Array
+var tower_tex_body:Array
+var tower_tex_barrel:Array
 var tower_attack:Array
 var tower_ability:Array
 
+var troop_scn:PackedScene = preload("res://troop/troop.tscn")
 var troop_name:Array
-var troop_text:Array
+var troop_tex:Array
 var troop_attack:Array
 var troop_ability:Array
 
-func _init()->void:
-	build_tower()
-	build_troop()
+func _init() -> void:
+	create_towerDB()
+	create_troopDB()
+	
 
-func build_troop()->void:
+func create_troopDB()->void:
+	troop_name.resize(12)
 	troop_name[0] = "Base"
 	troop_name[1] = "N/A"
 	troop_name[2] = "N/A"
@@ -29,20 +33,22 @@ func build_troop()->void:
 	tower_name[10] = "Hacker"
 	troop_name[11] = "N/A"
 	
-	troop_text[0] = "res://Assets/Placeholder/troop.png"
-	troop_text[1] = "res://Assets/Placeholder/troop.png"
-	troop_text[2] = "res://Assets/Placeholder/troop.png"
-	troop_text[3] = "res://Assets/Placeholder/troop.png"
-	troop_text[4] = "res://Assets/Placeholder/troop.png"
-	troop_text[5] = "res://Assets/Placeholder/troop.png"
-	troop_text[6] = "res://Assets/Placeholder/troop.png"
-	troop_text[7] = "res://Assets/Placeholder/troop.png"
-	troop_text[8] = "res://Assets/Placeholder/troop.png"
-	troop_text[9] = "res://Assets/Placeholder/troop.png"
-	troop_text[10] = "res://Assets/Placeholder/troop.png"
-	troop_text[11] = "res://Assets/Placeholder/troop.png"
+	troop_tex.resize(12)
+	troop_tex[0] = null
+	troop_tex[1] = null
+	troop_tex[2] = null
+	troop_tex[3] = null
+	troop_tex[4] = null
+	troop_tex[5] = null
+	troop_tex[6] = null
+	troop_tex[7] = null
+	troop_tex[8] = null
+	troop_tex[9] = null
+	troop_tex[10] = null
+	troop_tex[11] = null
 	
-	troop_attack[0] = "res://troop/attacks/troop_attack_base.tscn"
+	troop_attack.resize(12)
+	troop_attack[0] = preload("res://troop/attacks/troop_attack_base.tscn")
 	troop_attack[1] = null
 	troop_attack[2] = null
 	troop_attack[3] = null
@@ -55,7 +61,8 @@ func build_troop()->void:
 	troop_attack[10] = null
 	troop_attack[11] = null
 	
-	troop_ability[0] = "res://troop/abilities/troop_ability_base.tscn"
+	troop_ability.resize(12)
+	troop_ability[0] = preload("res://troop/abilities/troop_ability_base.tscn")
 	troop_ability[1] = null
 	troop_ability[2] = null
 	troop_ability[3] = null
@@ -68,7 +75,8 @@ func build_troop()->void:
 	troop_ability[10] = null
 	troop_ability[11] = null
 
-func build_tower()->void:
+func create_towerDB()->void:
+	tower_name.resize(12)
 	tower_name[0] = "Base"
 	tower_name[1] = "N/A"
 	tower_name[2] = "Gatling Gun"
@@ -82,33 +90,36 @@ func build_tower()->void:
 	tower_name[10] = "N/A"
 	tower_name[11] = "N/A"
 	
-	tower_text_body[0] = "res://Assets/Placeholder/tower_body.png"
-	tower_text_body[1] = "res://Assets/Placeholder/tower_body.png"
-	tower_text_body[2] = "res://Assets/Placeholder/tower_body.png"
-	tower_text_body[3] = "res://Assets/Placeholder/tower_body.png"
-	tower_text_body[4] = "res://Assets/Placeholder/tower_body.png"
-	tower_text_body[5] = "res://Assets/Placeholder/tower_body.png"
-	tower_text_body[6] = "res://Assets/Placeholder/tower_body.png"
-	tower_text_body[7] = "res://Assets/Placeholder/tower_body.png"
-	tower_text_body[8] = "res://Assets/Placeholder/tower_body.png"
-	tower_text_body[9] = "res://Assets/Placeholder/tower_body.png"
-	tower_text_body[10] = "res://Assets/Placeholder/tower_body.png"
-	tower_text_body[11] = "res://Assets/Placeholder/tower_body.png"
+	tower_tex_body.resize(12)
+	tower_tex_body[0] = preload("res://Assets/Placeholder/tower_body_tex.tres")
+	tower_tex_body[1] = null
+	tower_tex_body[2] = null
+	tower_tex_body[3] = null
+	tower_tex_body[4] = null
+	tower_tex_body[5] = null
+	tower_tex_body[6] = null
+	tower_tex_body[7] = null
+	tower_tex_body[8] = null
+	tower_tex_body[9] = null
+	tower_tex_body[10] = null
+	tower_tex_body[11] = null
 	
-	tower_text_barrel[0] = "res://Assets/Placeholder/tower_barrel.png"
-	tower_text_barrel[1] = "res://Assets/Placeholder/tower_barrel.png"
-	tower_text_barrel[2] = "res://Assets/Placeholder/tower_barrel.png"
-	tower_text_barrel[3] = "res://Assets/Placeholder/tower_barrel.png"
-	tower_text_barrel[4] = "res://Assets/Placeholder/tower_barrel.png"
-	tower_text_barrel[5] = "res://Assets/Placeholder/tower_barrel.png"
-	tower_text_barrel[6] = "res://Assets/Placeholder/tower_barrel.png"
-	tower_text_barrel[7] = "res://Assets/Placeholder/tower_barrel.png"
-	tower_text_barrel[8] = "res://Assets/Placeholder/tower_barrel.png"
-	tower_text_barrel[9] = "res://Assets/Placeholder/tower_barrel.png"
-	tower_text_barrel[10] = "res://Assets/Placeholder/tower_barrel.png"
-	tower_text_barrel[11] = "res://Assets/Placeholder/tower_barrel.png"
+	tower_tex_barrel.resize(12)
+	tower_tex_barrel[0] = preload("res://Assets/Placeholder/tower_barrel_tex.tres")
+	tower_tex_barrel[1] = null
+	tower_tex_barrel[2] = null
+	tower_tex_barrel[3] = null
+	tower_tex_barrel[4] = null
+	tower_tex_barrel[5] = null
+	tower_tex_barrel[6] = null
+	tower_tex_barrel[7] = null
+	tower_tex_barrel[8] = null
+	tower_tex_barrel[9] = null
+	tower_tex_barrel[10] = null
+	tower_tex_barrel[11] = null
 	
-	tower_attack[0] = "res://tower/attacks/tower_attack_base.tscn"
+	tower_attack.resize(12)
+	tower_attack[0] = preload("res://tower/attacks/tower_attack_base.tscn")
 	tower_attack[1] = null
 	tower_attack[2] = null
 	tower_attack[3] = null
@@ -121,7 +132,8 @@ func build_tower()->void:
 	tower_attack[10] = null
 	tower_attack[11] = null
 	
-	tower_ability[0] = "res://tower/abilities/tower_ability_base.tscn"
+	tower_ability.resize(12)
+	tower_ability[0] = preload("res://tower/abilities/tower_ability_base.tscn")
 	tower_ability[1] = null
 	tower_ability[2] = null
 	tower_ability[3] = null
@@ -133,3 +145,23 @@ func build_tower()->void:
 	tower_ability[9] = null
 	tower_ability[10] = null
 	tower_ability[11] = null
+
+func new_tower(id:int)->Node:
+	if(id > tower_name.size()-1):
+		print("Trying to create tower with id bigger than the name db array (%s, size: %s)"%[str(id),str(tower_name.size())])
+		return null
+	var inst = tower_scn.instance()
+	inst.set_noderef()
+	inst.name = tower_name[id]
+	# TODO set collision shape besed on body tex  size
+	if(is_instance_valid(tower_tex_body[id])):
+		inst.body.texture = tower_tex_body[id]
+	if(is_instance_valid(tower_tex_barrel[id])):
+		inst.barrel.texture = tower_tex_barrel[id]
+	if(is_instance_valid(tower_attack[id])):
+		var inst_attack = tower_attack[id].instance()
+		inst.add_child(inst_attack)
+	if(is_instance_valid(tower_ability[id])):
+		var inst_ability = tower_ability[id].instance()
+		inst.add_child(inst_ability)
+	return inst
