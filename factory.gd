@@ -151,17 +151,39 @@ func new_tower(id:int)->Node:
 		print("Trying to create tower with id bigger than the name db array (%s, size: %s)"%[str(id),str(tower_name.size())])
 		return null
 	var inst = tower_scn.instance()
-	inst.set_noderef()
 	inst.name = tower_name[id]
-	# TODO set collision shape besed on body tex  size
+	if(is_instance_valid(tower_attack[id])):
+		var inst_attack = tower_attack[id].instance()
+		inst.add_child(inst_attack)
+		inst.attack = inst.get_node("Attack")
+	if(is_instance_valid(tower_ability[id])):
+		var inst_ability = tower_ability[id].instance()
+		inst.add_child(inst_ability)
+		inst.ability = inst.get_node("Ability")
+	inst.set_noderef()
+	# TODO set collision shape based on body tex  size
 	if(is_instance_valid(tower_tex_body[id])):
 		inst.body.texture = tower_tex_body[id]
 	if(is_instance_valid(tower_tex_barrel[id])):
 		inst.barrel.texture = tower_tex_barrel[id]
-	if(is_instance_valid(tower_attack[id])):
-		var inst_attack = tower_attack[id].instance()
+	return inst
+
+func new_troop(id:int)->Node:
+	if(id > troop_name.size()-1):
+		print("Trying to create troop with id bigger than the name db array (%s, size: %s)"%[str(id),str(troop_name.size())])
+		return null
+	var inst = troop_scn.instance()
+	inst.name = troop_name[id]
+	if(is_instance_valid(troop_attack[id])):
+		var inst_attack = troop_attack[id].instance()
 		inst.add_child(inst_attack)
-	if(is_instance_valid(tower_ability[id])):
-		var inst_ability = tower_ability[id].instance()
+		inst.attack = inst.get_node("Attack")
+	if(is_instance_valid(troop_ability[id])):
+		var inst_ability = troop_ability[id].instance()
 		inst.add_child(inst_ability)
+		inst.ability = inst.get_node("Ability")
+	inst.set_noderef()
+	# TODO set collision shape based on body tex  size
+	if(is_instance_valid(troop_tex[id])):
+		inst.sprite.texture = troop_tex[id]
 	return inst

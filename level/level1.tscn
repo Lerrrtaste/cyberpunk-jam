@@ -14,3 +14,9 @@ position = Vector2( 448, 192 )
 
 [node name="TowerPos3" type="Position2D" parent="." index="3"]
 position = Vector2( 576, 256 )
+
+[node name="TroopStart" parent="." index="4"]
+position = Vector2( 32, 32 )
+
+[node name="TroopEnd" parent="." index="5"]
+position = Vector2( 968, 928 )

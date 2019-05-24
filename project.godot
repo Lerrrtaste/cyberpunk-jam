@@ -19,10 +19,6 @@ config/name="CyberpunkJam"
 run/main_scene="res://test.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-factory="*res://factory.gd"
-
 [display]
 
 window/size/width=1000
