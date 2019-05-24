@@ -12,12 +12,15 @@ var troop_path:PoolVector2Array
 var bAttacking := false
 var avail_troops:Dictionary = {0 : 100} # TODO get from managing scene
 
-var display_debug := false
+var display_debug := true
 
 func _ready() -> void:
 	factory = factory_scn.new()
 #	planning = planning_scn.instance()
 #	add_child(planning)
+	#TODO remove this: (only for db)
+	troop_path = nav2d.get_simple_path(troop_start.position,troop_end.position,false)
+	$Line2D.points = troop_path
 
 func start_attack()->void:
 	assert(bAttacking == false)

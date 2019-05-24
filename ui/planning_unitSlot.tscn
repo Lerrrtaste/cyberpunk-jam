@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_right = 64.0
 margin_bottom = 64.0
+expand = true
 __meta__ = {
 "_edit_lock_": true
 }
