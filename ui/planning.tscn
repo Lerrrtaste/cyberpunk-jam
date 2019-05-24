@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/dynfont_monts.tres" type="DynamicFontData" id=1]
-[ext_resource path="res://ui/planning_unitSlot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/planning.gd" type="Script" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -65,12 +64,3 @@ margin_top = -50.0
 margin_right = -150.0
 custom_fonts/font = SubResource( 3 )
 text = "Attack"
-
-[node name="Units" type="HBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 200.0
-margin_bottom = -170.0
-
-[node name="Unit Slot" parent="Units" instance=ExtResource( 2 )]
-margin_right = 0.0

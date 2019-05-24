@@ -16,8 +16,8 @@ var display_debug := false
 
 func _ready() -> void:
 	factory = factory_scn.new()
-	planning = planning_scn.instance()
-	add_child(planning_scn)
+#	planning = planning_scn.instance()
+#	add_child(planning)
 
 func start_attack()->void:
 	assert(bAttacking == false)

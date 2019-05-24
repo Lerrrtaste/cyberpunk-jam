@@ -5,22 +5,22 @@ var tower_name:Array
 var tower_tex_body:Array
 var tower_tex_barrel:Array
 var tower_attack:Array
-var tower_ability:Array
+#var tower_ability:Array
 
 var troop_scn:PackedScene = preload("res://troop/troop.tscn")
 var troop_name:Array
 var troop_tex:Array
-var troop_attack:Array
+#var troop_attack:Array
 var troop_ability:Array
 
 func _init() -> void:
 	create_towerDB()
 	create_troopDB()
-	
 
+#troop: name, tex, ability
 func create_troopDB()->void:
 	troop_name.resize(12)
-	troop_name[0] = "Base"
+	troop_name[0] = "TEST"
 	troop_name[1] = "N/A"
 	troop_name[2] = "N/A"
 	troop_name[3] = "N/A"
@@ -34,7 +34,7 @@ func create_troopDB()->void:
 	troop_name[11] = "N/A"
 	
 	troop_tex.resize(12)
-	troop_tex[0] = null
+	troop_tex[0] = preload("res://Assets/Placeholder/troop_tex.tres")
 	troop_tex[1] = null
 	troop_tex[2] = null
 	troop_tex[3] = null
@@ -62,7 +62,7 @@ func create_troopDB()->void:
 #	troop_attack[11] = null
 	
 	troop_ability.resize(12)
-	troop_ability[0] = preload("res://troop/abilities/troop_ability_base.tscn")
+	troop_ability[0] = preload("res://troop/abilities/ability0.tscn")
 	troop_ability[1] = null
 	troop_ability[2] = null
 	troop_ability[3] = null
@@ -75,9 +75,10 @@ func create_troopDB()->void:
 	troop_ability[10] = null
 	troop_ability[11] = null
 
+#tower: name, tex_body, tex_barrel, attack
 func create_towerDB()->void:
 	tower_name.resize(12)
-	tower_name[0] = "Base"
+	tower_name[0] = "TEST"
 	tower_name[1] = "N/A"
 	tower_name[2] = "Gatling Gun"
 	tower_name[3] = "Flak"
@@ -119,7 +120,7 @@ func create_towerDB()->void:
 	tower_tex_barrel[11] = null
 	
 	tower_attack.resize(12)
-	tower_attack[0] = preload("res://tower/attacks/tower_attack_base.tscn")
+	tower_attack[0] = preload("res://tower/attacks/attack0.tscn")
 	tower_attack[1] = null
 	tower_attack[2] = null
 	tower_attack[3] = null
@@ -132,19 +133,20 @@ func create_towerDB()->void:
 	tower_attack[10] = null
 	tower_attack[11] = null
 	
-	tower_ability.resize(12)
-	tower_ability[0] = preload("res://tower/abilities/tower_ability_base.tscn")
-	tower_ability[1] = null
-	tower_ability[2] = null
-	tower_ability[3] = null
-	tower_ability[4] = null
-	tower_ability[5] = null
-	tower_ability[6] = null
-	tower_ability[7] = null
-	tower_ability[8] = null
-	tower_ability[9] = null
-	tower_ability[10] = null
-	tower_ability[11] = null
+#	tower_ability.resize(12)
+#	tower_ability[0] = preload("res://tower/abilities/tower_ability_base.tscn")
+#	tower_ability[1] = null
+#	tower_ability[2] = null
+#	tower_ability[3] = null
+#	tower_ability[4] = null
+#	tower_ability[5] = null
+#	tower_ability[6] = null
+#	tower_ability[7] = null
+#	tower_ability[8] = null
+#	tower_ability[9] = null
+#	tower_ability[10] = null
+#	tower_ability[11] = null
+	pass
 
 func new_tower(id:int)->Node:
 	if(id > tower_name.size()-1):
@@ -156,10 +158,10 @@ func new_tower(id:int)->Node:
 		var inst_attack = tower_attack[id].instance()
 		inst.add_child(inst_attack)
 		inst.attack = inst.get_node("Attack")
-	if(is_instance_valid(tower_ability[id])):
-		var inst_ability = tower_ability[id].instance()
-		inst.add_child(inst_ability)
-		inst.ability = inst.get_node("Ability")
+#	if(is_instance_valid(tower_ability[id])):
+#		var inst_ability = tower_ability[id].instance()
+#		inst.add_child(inst_ability)
+#		inst.ability = inst.get_node("Ability")
 	inst.set_noderef()
 	# TODO set collision shape based on body tex  size
 	if(is_instance_valid(tower_tex_body[id])):

@@ -13,5 +13,16 @@ func setup(avail_troops:Dictionary,towers:Dictionary)->void:
 	#create and setup troop planning_unitSlot scenes
 	for t in troops_available.keys():
 		var inst = slot_scn.instance()
-		container_slots.add_child(inst)
+		add_child(inst)#container_slots.add_child(inst)
 		inst.setup(t,troops_available.get(t))
+#		slots.resize(slots.size()+1)
+		slots.append(inst)
+#		yield(get_tree().create_timer(0.3), "timeout")
+		inst.margin_bottom = 130+200
+#		yield(get_tree().create_timer(0.3), "timeout")
+		inst.margin_right = (slots.size())*(64-8)+8
+#		yield(get_tree().create_timer(0.3), "timeout")
+		inst.margin_left = (slots.size()-1)*(64+8)
+#		yield(get_tree().create_timer(0.3), "timeout")
+		inst.margin_top = 200
+		inst.rect_size = Vector2(64,130)

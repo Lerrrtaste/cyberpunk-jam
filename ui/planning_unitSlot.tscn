@@ -3,13 +3,19 @@
 [ext_resource path="res://ui/planning_unitSlot.gd" type="Script" id=2]
 
 [node name="Unit Slot" type="Panel"]
-margin_right = 64.0
-margin_bottom = 130.0
+anchor_right = 0.064
+anchor_bottom = 0.128
+margin_bottom = 2.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 script = ExtResource( 2 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_right = 64.0
 margin_bottom = 64.0
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Name" type="Label" parent="."]
 margin_top = 64.0
@@ -23,6 +29,9 @@ valign = 1
 margin_left = 4.0
 margin_top = 90.0
 text = "+"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Dec" type="Button" parent="."]
 anchor_left = 1.0
@@ -32,6 +41,9 @@ margin_top = 90.0
 margin_right = -4.0
 margin_bottom = 110.0
 text = "-"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Avail" type="Label" parent="."]
 margin_top = 115.0
@@ -40,6 +52,9 @@ margin_bottom = 22.0
 text = "x of x"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Info" type="Button" parent="."]
 margin_left = 4.0
@@ -47,3 +62,6 @@ margin_top = 4.0
 margin_right = 17.0
 margin_bottom = 20.0
 text = "i"
+__meta__ = {
+"_edit_lock_": true
+}

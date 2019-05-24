@@ -8,15 +8,18 @@ var count_selected:int = 0
 func _ready() -> void:
 	$Inc.connect("pressed",self,"_on_pressed_inc")
 	$Dec.connect("pressed",self,"_on_pressed_dec")
-	
 
 func setup(id:int,count:int):
+	print("Setup ", self , " with troop ID: ", id)
 	var factory = factory_scn.new()
 	if(factory.troop_name.size()-1 < id):
 		print(self, " Trying to get unit name with too high id!!!")
 	$Name.text = factory.troop_name[id]
 	$TextureRect.texture = factory.troop_tex[id]
+	#print(factory.troop_tex[id])
 	count_max = count
+	#margin_right = 64
+	update_avail()
 
 func _on_pressed_inc()->void:
 	if(count_selected<count_max):
