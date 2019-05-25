@@ -79,7 +79,7 @@ func create_troopDB()->void:
 
 	troop_hp.resize(12)
 	troop_hp[0] = 100
-	troop_hp[1] = null
+	troop_hp[1] = 25
 	troop_hp[2] = null
 	troop_hp[3] = null
 	troop_hp[4] = null
@@ -94,7 +94,7 @@ func create_troopDB()->void:
 #tower: name, tex_body, tex_barrel, attack
 func create_towerDB()->void:
 	tower_name.resize(12)
-	tower_name[0] = "TEST"
+	tower_name[0] = "Anti-Malware"
 	tower_name[1] = "N/A"
 	tower_name[2] = "Gatling Gun"
 	tower_name[3] = "Flak"
@@ -109,11 +109,11 @@ func create_towerDB()->void:
 	
 	tower_tex_body.resize(12)
 	tower_tex_body[0] = preload("res://Assets/Placeholder/tower_body_tex.tres")
-	tower_tex_body[1] = null
-	tower_tex_body[2] = null
-	tower_tex_body[3] = null
-	tower_tex_body[4] = null
-	tower_tex_body[5] = null
+	tower_tex_body[1] = preload("res://Assets/Placeholder/tower_body_tex.tres")
+	tower_tex_body[2] = preload("res://Assets/Placeholder/tower_body_tex.tres")
+	tower_tex_body[3] = preload("res://Assets/Placeholder/tower_body_tex.tres")
+	tower_tex_body[4] = preload("res://Assets/Placeholder/tower_body_tex.tres")
+	tower_tex_body[5] = preload("res://Assets/Placeholder/tower_body_tex.tres")
 	tower_tex_body[6] = null
 	tower_tex_body[7] = null
 	tower_tex_body[8] = null
@@ -148,21 +148,6 @@ func create_towerDB()->void:
 	tower_attack[9] = null
 	tower_attack[10] = null
 	tower_attack[11] = null
-	
-#	tower_ability.resize(12)
-#	tower_ability[0] = preload("res://tower/abilities/tower_ability_base.tscn")
-#	tower_ability[1] = null
-#	tower_ability[2] = null
-#	tower_ability[3] = null
-#	tower_ability[4] = null
-#	tower_ability[5] = null
-#	tower_ability[6] = null
-#	tower_ability[7] = null
-#	tower_ability[8] = null
-#	tower_ability[9] = null
-#	tower_ability[10] = null
-#	tower_ability[11] = null
-	pass
 
 func new_tower(id:int)->Node:
 	if(id > tower_name.size()-1):

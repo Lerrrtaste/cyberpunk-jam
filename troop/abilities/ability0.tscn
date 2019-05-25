@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://troop/abilities/ability0.gd" type="Script" id=1]
 
-[node name="ability" type="Node"]
+[sub_resource type="CircleShape2D" id=1]
+radius = 96.0
+
+[node name="Ability" type="Area2D"]
+collision_layer = 16
+collision_mask = 16
 script = ExtResource( 1 )
+buff = 0.25
+buff_reach = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

@@ -17,15 +17,18 @@ var troops_alive:Array
 
 var troop_path:PoolVector2Array
 var bAttacking := false
-var avail_troops:Dictionary = {0 : 99} # TODO get from managing scene
+var avail_troops:Dictionary = {	0 : 99,
+								1 : 10} # TODO get from managing scene
 
 var display_debug := false
 
 func get_nearby_troops(idx:int, idx_range:int)->Array:
 	var ret:Array
-	for i in range(-idx_range/2,idx_range/2):
+	for i in range(1,idx_range+1):
 		if(troops_alive.size()-1 >= idx+i):
 			ret.append(troops_alive[idx+i])
+		if(0 <= idx-i):
+			ret.append(troops_alive[idx-i])
 	return ret
 
 func _ready() -> void:

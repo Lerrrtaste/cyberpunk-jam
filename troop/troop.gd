@@ -1,4 +1,5 @@
 extends Node2D
+class_name troop_class
 
 var area2d
 var collision_shape
@@ -16,6 +17,8 @@ var path = null
 var target = null
 var order_pos:int
 
+var bBuffed := false #ability0
+
 signal died(inst)
 
 func set_noderef()->void:
@@ -30,9 +33,9 @@ func take_damage(dmg:int)->void:
 	hp -= dmg
 	update()
 
-func _unhandled_key_input(event: InputEventKey) -> void:
-	if(event.scancode == KEY_T && event.pressed && order_pos == 2):
-		take_damage(25)
+#func _unhandled_key_input(event: InputEventKey) -> void:
+#	if(event.scancode == KEY_T && event.pressed && order_pos == 2):
+#		take_damage(50)
 
 func die()->void:
 	get_node("../").register_death(self)
@@ -42,14 +45,17 @@ func die()->void:
 
 func boost(sec:float)->void:
 	boost += sec * 4 # 1.5=2; 1.25 = 4; 1=1; proportionaltaet zu boost speed multiplier
-	print("boost set")
+	#print("boost set")
 
 func _draw()->void:
+	if(bBuffed):
+		draw_circle(Vector2(),15,ColorN("green"))
 	if(hp<hp_max):
-		draw_rect(Rect2(Vector2(-15,-25),Vector2(30,7)),ColorN("grey",0.5))
+		draw_rect(Rect2(Vector2(-15,-25),Vector2(30,7)),ColorN("black",0.5))
 		draw_rect(Rect2(Vector2(-15,-25),Vector2(30*hp/hp_max,7)),ColorN("red"))
 
 func _process(delta: float) -> void:
+	update()
 #	if(is_instance_valid(attack)):
 #		attack.step(delta)
 	if(is_instance_valid(ability)):
@@ -59,13 +65,13 @@ func _process(delta: float) -> void:
 		Sprite.rotation = global_position.angle_to(target.global_position)
 	walk(delta)
 	boost = clamp(boost-delta,0.0,99999.9)
-	if(order_pos == 2 && boost != 0):
-		print(boost)
+#	if(order_pos == 2 && boost != 0):
+#		#print(boost)
 
 func walk(delta:float)->void:
 	if(typeof(path) == TYPE_NIL):
 		path = get_node("../").troop_path
-		print(self," updated path")
+		#print(self," updated path")
 	move_along_path(delta*speed*(1.25 if boost > 0 else 1))
 
 func move_along_path(distance:float)->void:
