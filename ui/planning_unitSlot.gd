@@ -16,7 +16,7 @@ func setup(_id:int,count:int):
 	var factory = factory_scn.new()
 	if(factory.troop_name.size()-1 < id):
 		print(self, " Trying to get unit name with too high id!!!")
-	$Name.text = factory.troop_name[id]
+	$Name.text = str(factory.troop_name[id])
 	$TextureRect.texture = factory.troop_tex[id]
 	#print(factory.troop_tex[id])
 	count_max = count

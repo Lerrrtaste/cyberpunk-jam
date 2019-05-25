@@ -15,4 +15,4 @@ func _ready() -> void:
 	if(is_instance_valid(inst)):
 		$TowerPos3.add_child(inst)
 	
-	$Planning.setup({0:10,1:2,4:1},{0:3})
+	$Planning.setup(avail_troops,{0:3})

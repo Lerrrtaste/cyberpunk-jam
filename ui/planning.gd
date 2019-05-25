@@ -11,6 +11,8 @@ var factory
 var bMoving := false
 var moving_start:Vector2
 
+var bDisplayNames := true #TODO disable whan all troops have textures
+
 func _ready()->void:
 	order_list.max_columns = 500
 	$Move.connect("button_down",self,"_on_move_down")
@@ -18,7 +20,19 @@ func _ready()->void:
 	#$Move.keep_pressed_outside = true #does nothing
 	$Attack.connect("pressed",self,"_on_attack_pressed")
 	$MoveLeft.connect("pressed",self,"_on_moveleft_pressed")
-	$MoveLeft.connect("pressed",self,"_on_moveright_pressed")
+	$MoveRight.connect("pressed",self,"_on_moveright_pressed")
+	$DeleteSelction.connect("pressed",self,"_on_delete_pressed")
+	$HSlider.connect("value_changed",self,"_on_slider_change")
+
+func _on_slider_change(value:float)->void:
+	$SliderDesc.text = "Spawn cooldown\n%ss"%str(value*1)
+	print("Happened")
+	
+func _on_delete_pressed()->void:
+	var run := 0
+	for i in order_list.get_selected_items():
+		slots[order_list.get_item_metadata(i-run)]._on_pressed_dec()
+		run += 1
 
 func _on_move_down()->void:
 	assert(!bMoving)
@@ -30,11 +44,25 @@ func _on_move_up()->void:
 	bMoving = false
 	
 func _on_attack_pressed()->void:
-	pass
+	var order_array:Array
+	for i in order_list.get_item_count():
+		order_array.append(order_list.get_item_metadata(i))
+	get_node("../").start_attack(order_array, $HSlider.value) #might wanna pass junction selection for pathfinding
+	visible = false
+	queue_free()
+	
 func _on_moveleft_pressed()->void:
-	pass
+	for i in order_list.get_selected_items():
+		if(i>0):
+			order_list.move_item(i,i-1)
+	order_update()
+
 func _on_moveright_pressed()->void:
-	pass
+	for i in order_list.get_selected_items():
+		print(i,i<order_list.get_item_count())
+		if(i<order_list.get_item_count()):
+			order_list.move_item(i,i+1)
+	order_update()
 
 func _process(delta:float)->void:
 	if(bMoving):
@@ -81,9 +109,14 @@ func order_remove(id:int)->void:
 				return
 
 func order_update()->void:
+	if(!bDisplayNames):
+		return
 	for i in order_list.get_item_count():
-		order_list.set_item_text(i,"%s:%s"%[i,order_list.get_item_text(i).split(":")[1]])
+		order_list.set_item_text(i,("%s:%s"%[i,order_list.get_item_text(i).split(":")[1]]))
 
 func order_add(id:int)->void:
-	order_list.add_item("%s:%s"%[order_list.get_item_count(),factory.troop_name[id]],factory.troop_tex[id])
+	if(bDisplayNames):
+		order_list.add_item("%s:%s"%[order_list.get_item_count(),factory.troop_name[id]],factory.troop_tex[id])
+	else:
+		order_list.add_icon_item(factory.troop_tex[id])
 	order_list.set_item_metadata(order_list.get_item_count()-1,id)

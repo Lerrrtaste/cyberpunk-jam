@@ -20,6 +20,8 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 
 [node name="Line2D" type="Line2D" parent="."]
 default_color = Color( 0.85098, 0.0156863, 0.741176, 1 )
-texture_mode = 3080292
+texture_mode = 0
 
 [node name="Planning" parent="." instance=ExtResource( 3 )]
+
+[node name="SpawnTimer" type="Timer" parent="."]

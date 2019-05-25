@@ -6,12 +6,14 @@ var tower_tex_body:Array
 var tower_tex_barrel:Array
 var tower_attack:Array
 #var tower_ability:Array
+var tower_hp:Array
 
 var troop_scn:PackedScene = preload("res://troop/troop.tscn")
 var troop_name:Array
 var troop_tex:Array
 #var troop_attack:Array
 var troop_ability:Array
+var troop_hp:Array
 
 func _init() -> void:
 	create_towerDB()
@@ -20,26 +22,26 @@ func _init() -> void:
 #troop: name, tex, ability
 func create_troopDB()->void:
 	troop_name.resize(12)
-	troop_name[0] = "TEST"
-	troop_name[1] = "N/A"
-	troop_name[2] = "N/A"
-	troop_name[3] = "N/A"
-	troop_name[4] = "N/A"
-	troop_name[5] = "N/A"
+	troop_name[0] = "Exploit"
+	troop_name[1] = "Packet Sniffer"
+	troop_name[2] = "DDos"
+	troop_name[3] = "Trojan"
+	troop_name[4] = "Brute force"
+	troop_name[5] = "Worm"
 	troop_name[6] = "N/A"
 	troop_name[7] = "N/A"
 	troop_name[8] = "N/A"
-	tower_name[9] = "Tank"
-	tower_name[10] = "Hacker"
+	tower_name[9] = "N/A"
+	tower_name[10] = "N/A"
 	troop_name[11] = "N/A"
 	
 	troop_tex.resize(12)
 	troop_tex[0] = preload("res://Assets/Placeholder/troop_tex.tres")
-	troop_tex[1] = null
-	troop_tex[2] = null
-	troop_tex[3] = null
-	troop_tex[4] = null
-	troop_tex[5] = null
+	troop_tex[1] = preload("res://Assets/Placeholder/troop_tex.tres")
+	troop_tex[2] = preload("res://Assets/Placeholder/troop_tex.tres")
+	troop_tex[3] = preload("res://Assets/Placeholder/troop_tex.tres")
+	troop_tex[4] = preload("res://Assets/Placeholder/troop_tex.tres")
+	troop_tex[5] = preload("res://Assets/Placeholder/troop_tex.tres")
 	troop_tex[6] = null
 	troop_tex[7] = null
 	troop_tex[8] = null
@@ -62,8 +64,8 @@ func create_troopDB()->void:
 #	troop_attack[11] = null
 	
 	troop_ability.resize(12)
-	troop_ability[0] = preload("res://troop/abilities/ability0.tscn")
-	troop_ability[1] = null
+	troop_ability[0] = null
+	troop_ability[1] = preload("res://troop/abilities/ability0.tscn")
 	troop_ability[2] = null
 	troop_ability[3] = null
 	troop_ability[4] = null
@@ -74,6 +76,20 @@ func create_troopDB()->void:
 	troop_ability[9] = null
 	troop_ability[10] = null
 	troop_ability[11] = null
+
+	troop_hp.resize(12)
+	troop_hp[0] = 100
+	troop_hp[1] = null
+	troop_hp[2] = null
+	troop_hp[3] = null
+	troop_hp[4] = null
+	troop_hp[5] = null
+	troop_hp[6] = null
+	troop_hp[7] = null
+	troop_hp[8] = null
+	troop_hp[9] = null
+	troop_hp[10] = null
+	troop_hp[11] = null
 
 #tower: name, tex_body, tex_barrel, attack
 func create_towerDB()->void:
@@ -153,7 +169,7 @@ func new_tower(id:int)->Node:
 		print("Trying to create tower with id bigger than the name db array (%s, size: %s)"%[str(id),str(tower_name.size())])
 		return null
 	var inst = tower_scn.instance()
-	inst.name = tower_name[id]
+	inst.name = str(tower_name[id])
 	if(is_instance_valid(tower_attack[id])):
 		var inst_attack = tower_attack[id].instance()
 		inst.add_child(inst_attack)
@@ -176,6 +192,7 @@ func new_troop(id:int)->Node:
 		return null
 	var inst = troop_scn.instance()
 	inst.name = troop_name[id]
+	inst.hp_max = troop_hp[id]
 #	if(is_instance_valid(troop_attack[id])):
 #		var inst_attack = troop_attack[id].instance()
 #		inst.add_child(inst_attack)

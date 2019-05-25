@@ -6,7 +6,6 @@ var body
 var barrel
 var attack = null
 #var ability = null
-
 var target = null
 
 func set_noderef()->void:
