@@ -18,6 +18,7 @@ var target = null
 var order_pos:int
 
 var bBuffed := false #ability0
+var bAb1 := false setget set_ab1 # attack 1
 
 signal died(inst)
 
@@ -87,3 +88,14 @@ func move_along_path(distance:float)->void:
 		distance -= dist_to_next
 		start_pos = path[0]
 		path.remove(0)
+
+#ability 1 functionality + effect strength
+func set_ab1(val:bool)->void:
+	print("happened 2")
+	if(val && !bAb1):
+		speed = speed * .6
+		bAb1 = true
+		#hp -= 
+	else:
+		speed = speed * (1+(1/3))
+		bAb1 = false

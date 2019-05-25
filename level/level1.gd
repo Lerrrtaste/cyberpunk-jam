@@ -7,7 +7,7 @@ func _ready() -> void:
 	if(is_instance_valid(inst)):
 		$TowerPos1.add_child(inst)
 		
-	inst = factory.new_tower(0)
+	inst = factory.new_tower(1)
 	if(is_instance_valid(inst)):
 		$TowerPos2.add_child(inst)
 		

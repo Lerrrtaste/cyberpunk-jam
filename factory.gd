@@ -95,10 +95,10 @@ func create_troopDB()->void:
 func create_towerDB()->void:
 	tower_name.resize(12)
 	tower_name[0] = "Anti-Malware"
-	tower_name[1] = "N/A"
-	tower_name[2] = "Gatling Gun"
-	tower_name[3] = "Flak"
-	tower_name[4] = "Roadblock"
+	tower_name[1] = "Firewall"
+	tower_name[2] = "N/A"
+	tower_name[3] = "N/A"
+	tower_name[4] = "N/A"
 	tower_name[5] = "N/A"
 	tower_name[6] = "N/A"
 	tower_name[7] = "N/A"
@@ -137,7 +137,7 @@ func create_towerDB()->void:
 	
 	tower_attack.resize(12)
 	tower_attack[0] = preload("res://tower/attacks/attack0.tscn")
-	tower_attack[1] = null
+	tower_attack[1] = preload("res://tower/attacks/attack1.tscn")
 	tower_attack[2] = null
 	tower_attack[3] = null
 	tower_attack[4] = null

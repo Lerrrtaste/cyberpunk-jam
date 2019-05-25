@@ -1,6 +1,7 @@
 extends Node2D
 
-var area2d
+var area_range
+var area_body
 var collision_shape
 var body
 var barrel
@@ -8,7 +9,8 @@ var attack = null
 var target = null
 
 func set_noderef()->void:
-	area2d = $Area2D
+	area_range = $AreaRange
+	area_body = $AreaBody
 	collision_shape = $Area2D/CollisionShape2D
 	body = $Body
 	barrel = $Barrel

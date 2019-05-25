@@ -4,7 +4,6 @@
 
 [node name="Attack" type="Node"]
 script = ExtResource( 1 )
-rrange = 320
 
 [node name="Cooldown" type="Timer" parent="."]
 autostart = true
