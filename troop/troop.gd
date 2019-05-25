@@ -9,6 +9,7 @@ var ability = null
 var tower_prio:Dictionary
 
 export(int) var speed:int = 500
+var speed_og = speed
 var boost_multiplier:float = 1.0 #export(float) var boost_multiplier:float = 1.0 BROKEN DONT CHANGE
 var boost:float = 0.0
 var hp_max:int
@@ -16,6 +17,7 @@ var hp:int
 var path = null
 var target = null
 var order_pos:int
+var dmg_pre := 0
 
 var bBuffed := false #ability0
 var bAb1 := false setget set_ab1 # attack 1
@@ -45,7 +47,9 @@ func die()->void:
 	queue_free()
 
 func boost(sec:float)->void:
-	boost += sec * 4 # 1.5=2; 1.25 = 4; 1=1; proportionaltaet zu boost speed multiplier
+	pass
+	#RIP perfect boost formula :(
+	#boost += sec * 4 # 1.5=2; 1.25 = 4; 1=1; proportionaltaet zu boost speed multiplier
 	#print("boost set")
 
 func _draw()->void:
@@ -57,6 +61,7 @@ func _draw()->void:
 
 func _process(delta: float) -> void:
 	update()
+	#boost = 0
 #	if(is_instance_valid(attack)):
 #		attack.step(delta)
 	if(is_instance_valid(ability)):
@@ -65,7 +70,7 @@ func _process(delta: float) -> void:
 	if(target_type != TYPE_NIL):
 		Sprite.rotation = global_position.angle_to(target.global_position)
 	walk(delta)
-	boost = clamp(boost-delta,0.0,99999.9)
+	#boost = clamp(boost-delta,0.0,99999.9)
 #	if(order_pos == 2 && boost != 0):
 #		#print(boost)
 
@@ -91,11 +96,11 @@ func move_along_path(distance:float)->void:
 
 #ability 1 functionality + effect strength
 func set_ab1(val:bool)->void:
-	print("happened 2")
 	if(val && !bAb1):
+		speed_og = speed
 		speed = speed * .6
 		bAb1 = true
 		#hp -= 
 	else:
-		speed = speed * (1+(1/3))
+		speed = speed_og
 		bAb1 = false

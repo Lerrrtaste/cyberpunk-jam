@@ -13,6 +13,10 @@ var moving_start:Vector2
 
 var bDisplayNames := true #TODO disable whan all troops have textures
 
+# 2.0
+var cost_total := 0
+var money := 100
+
 func _ready()->void:
 	order_list.max_columns = 500
 	$Move.connect("button_down",self,"_on_move_down")
@@ -44,12 +48,20 @@ func _on_move_up()->void:
 	bMoving = false
 	
 func _on_attack_pressed()->void:
+	if(cost_total > money):
+		return
+	money -= cost_total
+	cost_total = 0
 	var order_array:Array
 	for i in order_list.get_item_count():
 		order_array.append(order_list.get_item_metadata(i))
 	get_node("../").start_attack(order_array, $HSlider.value) #might wanna pass junction selection for pathfinding
 	visible = false
-	queue_free()
+	$ItemList.clear()
+	for s in slots:
+		s.count_selected = 0
+		s.update_avail()
+	#queue_free()
 	
 func _on_moveleft_pressed()->void:
 	for i in order_list.get_selected_items():
@@ -65,6 +77,8 @@ func _on_moveright_pressed()->void:
 	order_update()
 
 func _process(delta:float)->void:
+	$CostTotal.text = "BALANCE: %s$\n\nCOST: %s$"%[money,cost_total]
+	
 	if(bMoving):
 		margin_left = moving_start.x + get_viewport().get_mouse_position().x
 		margin_top = moving_start.y + get_viewport().get_mouse_position().y
@@ -86,16 +100,17 @@ func setup(avail_troops:Dictionary,towers:Dictionary)->void:
 			slots.resize(t+1)
 		slots[t] = inst
 #		yield(get_tree().create_timer(0.3), "timeout")
-		inst.margin_bottom = 130+200
+		inst.margin_bottom = 150+200
 #		yield(get_tree().create_timer(0.3), "timeout")
 		inst.margin_right = ((t+1))*(64-8)+8 # TODO add placeholders in between
 #		yield(get_tree().create_timer(0.3), "timeout")
 		inst.margin_left = ((t+1)-1)*(64+8)
 #		yield(get_tree().create_timer(0.3), "timeout")
 		inst.margin_top = 200
-		inst.rect_size = Vector2(64,130)
+		inst.rect_size = Vector2(64,150)
 
 func order_remove(id:int)->void:
+	cost_total -= factory.troop_cost[id]
 	if(order_list.is_anything_selected()): #look in selection first
 		for s in order_list.get_selected_items():
 			if(order_list.get_item_metadata(s) == id):
@@ -117,6 +132,7 @@ func order_update()->void:
 func order_add(id:int)->void:
 	if(bDisplayNames):
 		order_list.add_item("%s:%s"%[order_list.get_item_count(),factory.troop_name[id]],factory.troop_tex[id])
+		cost_total += factory.troop_cost[id]
 	else:
 		order_list.add_icon_item(factory.troop_tex[id])
 	order_list.set_item_metadata(order_list.get_item_count()-1,id)

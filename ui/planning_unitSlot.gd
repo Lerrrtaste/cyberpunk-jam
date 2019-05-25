@@ -5,6 +5,7 @@ var factory_scn = preload("res://factory.gd")
 var count_max:int 
 var count_selected:int = 0
 var id:int
+var factory
 
 func _ready() -> void:
 	$Inc.connect("pressed",self,"_on_pressed_inc")
@@ -13,7 +14,7 @@ func _ready() -> void:
 func setup(_id:int,count:int):
 	print("Setup ", self , " with troop ID: ", _id)
 	id = _id
-	var factory = factory_scn.new()
+	factory = factory_scn.new()
 	if(factory.troop_name.size()-1 < id):
 		print(self, " Trying to get unit name with too high id!!!")
 	$Name.text = str(factory.troop_name[id])
@@ -36,4 +37,4 @@ func _on_pressed_dec()->void:
 		get_node("../").order_remove(id)
 	
 func update_avail()->void:
-	label_available.text = "%s of %s"%[count_selected,count_max]
+	label_available.text = "%sx\n%s$"%[count_selected,factory.troop_cost[id]]

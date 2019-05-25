@@ -12,6 +12,10 @@ func _ready()->void:
 #	else:
 #		print("instance invalid!")
 	btn_level1.connect("pressed",self,"_btn_lvl1")
+	$Control/Level2.connect("pressed",self,"_btn_lvl2")
 
 func _btn_lvl1()->void:
 	get_tree().change_scene("res://level/level1.tscn")
+
+func _btn_lvl2()->void:
+	get_tree().change_scene("res://level/level2.tscn")

@@ -14,6 +14,7 @@ var troop_tex:Array
 #var troop_attack:Array
 var troop_ability:Array
 var troop_hp:Array
+var troop_cost:Array
 
 func _init() -> void:
 	create_towerDB()
@@ -90,6 +91,20 @@ func create_troopDB()->void:
 	troop_hp[9] = null
 	troop_hp[10] = null
 	troop_hp[11] = null
+	
+	troop_cost.resize(12)
+	troop_cost[0] = 5
+	troop_cost[1] = 15
+	troop_cost[2] = 50
+	troop_cost[3] = null
+	troop_cost[4] = 110
+	troop_cost[5] = 250
+	troop_cost[6] = null
+	troop_cost[7] = null
+	troop_cost[8] = null
+	troop_cost[9] = null
+	troop_cost[10] = null
+	troop_cost[11] = null
 
 #tower: name, tex_body, tex_barrel, attack
 func create_towerDB()->void:

@@ -20,6 +20,10 @@ var bAttacking := false
 var avail_troops:Dictionary = {	0 : 99,
 								1 : 10} # TODO get from managing scene
 
+# 2.0
+var money:int = 100
+var bSpawning:bool = false
+
 var display_debug := false
 
 func get_nearby_troops(idx:int, idx_range:int)->Array:
@@ -34,8 +38,12 @@ func get_nearby_troops(idx:int, idx_range:int)->Array:
 func _ready() -> void:
 	factory = factory_scn.new()
 	spawn_timer.connect("timeout",self,"_on_spawn_timeout")
+	$ButtonShop.connect("pressed",self,"_on_shop_pressed")
 #	planning = planning_scn.instance()
 #	add_child(planning)
+
+func _on_shop_pressed()->void:
+	$Planning.visible = !$Planning.visible
 
 func _on_spawn_timeout()->void:
 	var inst = factory.new_troop(spawn_order[0])
@@ -48,6 +56,8 @@ func _on_spawn_timeout()->void:
 	spawn_order.remove(0)
 	if(spawn_order.size() == 0):
 		spawn_timer.stop()
+		#bSpawning = false
+		$ButtonShop.visible = true
 
 func register_death(inst:Node2D)->void:
 	troops_alive.remove(inst.order_pos)
@@ -61,8 +71,10 @@ func register_death(inst:Node2D)->void:
 		spawn_count += 1
 
 func start_attack(order_array:Array, spawn_rate:float )->void:
-	assert(bAttacking == false)
-	bAttacking = true
+	#bSpawning = true
+	$ButtonShop.visible = false
+	#assert(bAttacking == false)
+	#bAttacking = true
 	troop_path = nav2d.get_simple_path(troop_start.position,troop_end.position,false)
 	if(!display_debug):
 		$Line2D.visible = false 
