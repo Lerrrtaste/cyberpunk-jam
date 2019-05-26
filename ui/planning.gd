@@ -15,7 +15,7 @@ var bDisplayNames := true #TODO disable whan all troops have textures
 
 # 2.0
 var cost_total := 0
-var money := 100
+var money := 44420
 
 func _ready()->void:
 	order_list.max_columns = 500

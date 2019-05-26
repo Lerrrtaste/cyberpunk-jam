@@ -18,7 +18,8 @@ var troops_alive:Array
 var troop_path:PoolVector2Array
 var bAttacking := false
 var avail_troops:Dictionary = {	0 : 99,
-								1 : 10} # TODO get from managing scene
+								1 : 99,
+								2 : 99} # TODO get from managing scene
 
 # 2.0
 var money:int = 100

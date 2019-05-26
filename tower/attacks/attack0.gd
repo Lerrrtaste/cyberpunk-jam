@@ -14,7 +14,7 @@ func _ready() -> void:
 	timer.connect("timeout",self,"_on_timeout")
 
 func _on_timeout()->void:
-	if(is_instance_valid(get_node("../").target)):
+	if(is_instance_valid(get_node("../").target) && !get_node("../").bFrozen):
 		var inst = projectile_scn.instance()
 		add_child(inst)
 		inst.target = get_node("../").target

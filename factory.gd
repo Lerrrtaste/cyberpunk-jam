@@ -67,7 +67,7 @@ func create_troopDB()->void:
 	troop_ability.resize(12)
 	troop_ability[0] = null
 	troop_ability[1] = preload("res://troop/abilities/ability0.tscn")
-	troop_ability[2] = null
+	troop_ability[2] = preload("res://troop/abilities/ability1.tscn")
 	troop_ability[3] = null
 	troop_ability[4] = null
 	troop_ability[5] = null
@@ -81,7 +81,7 @@ func create_troopDB()->void:
 	troop_hp.resize(12)
 	troop_hp[0] = 100
 	troop_hp[1] = 25
-	troop_hp[2] = null
+	troop_hp[2] = 500#25
 	troop_hp[3] = null
 	troop_hp[4] = null
 	troop_hp[5] = null
@@ -117,7 +117,7 @@ func create_towerDB()->void:
 	tower_name[5] = "N/A"
 	tower_name[6] = "N/A"
 	tower_name[7] = "N/A"
-	tower_name[8] = "N/A"
+	tower_name[8] = "Keylogger"
 	tower_name[9] = "N/A"
 	tower_name[10] = "N/A"
 	tower_name[11] = "N/A"
@@ -131,7 +131,7 @@ func create_towerDB()->void:
 	tower_tex_body[5] = preload("res://Assets/Placeholder/tower_body_tex.tres")
 	tower_tex_body[6] = null
 	tower_tex_body[7] = null
-	tower_tex_body[8] = null
+	tower_tex_body[8] = preload("res://Assets/Placeholder/tower_body_tex.tres")
 	tower_tex_body[9] = null
 	tower_tex_body[10] = null
 	tower_tex_body[11] = null

@@ -20,7 +20,7 @@ var order_pos:int
 var dmg_pre := 0
 
 var bBuffed := false #ability0
-var bAb1 := false setget set_ab1 # attack 1
+var bAb1 := false # attack 1
 
 signal died(inst)
 
@@ -95,10 +95,10 @@ func move_along_path(distance:float)->void:
 		path.remove(0)
 
 #ability 1 functionality + effect strength
-func set_ab1(val:bool)->void:
+func ab1(val:bool)->void:
 	if(val && !bAb1):
 		speed_og = speed
-		speed = speed * .6
+		speed = speed * .5
 		bAb1 = true
 		#hp -= 
 	else:

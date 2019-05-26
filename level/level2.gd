@@ -6,7 +6,7 @@ var bag:Array
 
 func _ready() -> void:
 	for i in tower_pos_count:
-		tower_pos.append(get_node("TowerPos%s"%i))
+		tower_pos.append(get_node("Pos/TowerPos%s"%i))
 	randomize()
 	tower_pos.shuffle()
 	
@@ -24,6 +24,9 @@ func spawn_tower()->void:
 			instp.add_child(inst)
 		else:
 			inst.queue_free()
+
+func _process(delta:float) -> void:
+	$MoneyLabel/Money.text = "%s$"%$Planning.money
 
 #random bag algr
 func get_next_type() -> int:

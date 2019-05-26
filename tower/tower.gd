@@ -8,6 +8,9 @@ var barrel
 var attack = null
 var target = null
 
+#ability 1
+var bFrozen := false
+
 func set_noderef()->void:
 	area_range = $AreaRange
 	area_body = $AreaBody
@@ -37,13 +40,25 @@ func update_target(area:Area2D)->void:
 		elif(closest.order_pos>i.get_node("../").order_pos):
 			closest = i.get_node("../")
 	target = closest
-	print(self," updated target to ", target)
+	#print(self," updated target to ", target)
 
 func _process(delta: float) -> void:
 #	if(!is_instance_valid(target)):
 #		update_target()
-	if(is_instance_valid(attack)):
+	if(is_instance_valid(attack) && !bFrozen):
 		attack.step(delta)
 	var target_type = typeof(target)
-	if(target_type != TYPE_NIL && is_instance_valid(barrel) && is_instance_valid(target)):
+	if(target_type != TYPE_NIL && is_instance_valid(barrel) && is_instance_valid(target) && !bFrozen):
 		barrel.rotation = global_position.angle_to_point(target.global_position) - PI/2
+	update()
+
+func _draw() -> void:
+	if(bFrozen):
+		draw_circle(Vector2(),10,ColorN("blue"))
+
+#ability 1
+func freeze(val:bool)->bool:
+	if(bFrozen == val): #frozen by other tower
+		return false
+	bFrozen = val
+	return true
