@@ -36,4 +36,5 @@ func get_next_type() -> int:
 		bag = range(2) # WHAT TOWER IDs AVAILABLE
 		bag.shuffle()
 	#get front element
-	return bag.pop_front()
+	#return bag.pop_front() #REMOVED FOR DBG ONLY
+	return 0

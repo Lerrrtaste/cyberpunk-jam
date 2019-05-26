@@ -29,9 +29,9 @@ func create_troopDB()->void:
 	troop_name[3] = "Trojan"
 	troop_name[4] = "Brute force"
 	troop_name[5] = "Worm"
-	troop_name[6] = "N/A"
-	troop_name[7] = "N/A"
-	troop_name[8] = "N/A"
+	troop_name[6] = "Worm Clone"
+	troop_name[7] = "Spoof"
+	troop_name[8] = "Keylogger"
 	tower_name[9] = "N/A"
 	tower_name[10] = "N/A"
 	troop_name[11] = "N/A"
@@ -43,9 +43,9 @@ func create_troopDB()->void:
 	troop_tex[3] = preload("res://Assets/Placeholder/troop_tex.tres")
 	troop_tex[4] = preload("res://Assets/Placeholder/troop_tex.tres")
 	troop_tex[5] = preload("res://Assets/Placeholder/troop_tex.tres")
-	troop_tex[6] = null
-	troop_tex[7] = null
-	troop_tex[8] = null
+	troop_tex[6] = preload("res://Assets/Placeholder/troop_tex.tres")
+	troop_tex[7] = preload("res://Assets/Placeholder/troop_tex.tres")
+	troop_tex[8] = preload("res://Assets/Placeholder/troop_tex.tres")
 	troop_tex[9] = null
 	troop_tex[10] = null
 	troop_tex[11] = null
@@ -70,7 +70,7 @@ func create_troopDB()->void:
 	troop_ability[2] = preload("res://troop/abilities/ability1.tscn")
 	troop_ability[3] = null
 	troop_ability[4] = null
-	troop_ability[5] = null
+	troop_ability[5] = preload("res://troop/abilities/ability2.tscn")
 	troop_ability[6] = null
 	troop_ability[7] = null
 	troop_ability[8] = null
@@ -81,11 +81,11 @@ func create_troopDB()->void:
 	troop_hp.resize(12)
 	troop_hp[0] = 100
 	troop_hp[1] = 25
-	troop_hp[2] = 500#25
+	troop_hp[2] = 25
 	troop_hp[3] = null
-	troop_hp[4] = null
-	troop_hp[5] = null
-	troop_hp[6] = null
+	troop_hp[4] = 500
+	troop_hp[5] = 75
+	troop_hp[6] = 25
 	troop_hp[7] = null
 	troop_hp[8] = null
 	troop_hp[9] = null
@@ -99,7 +99,7 @@ func create_troopDB()->void:
 	troop_cost[3] = null
 	troop_cost[4] = 110
 	troop_cost[5] = 250
-	troop_cost[6] = null
+	troop_cost[6] = -1 # cant be bought
 	troop_cost[7] = null
 	troop_cost[8] = null
 	troop_cost[9] = null
@@ -202,7 +202,7 @@ func new_troop(id:int)->Node:
 		inst.add_child(inst_ability)
 		inst.ability = inst.get_node("Ability")
 	inst.set_noderef()
-	# TODO set collision shape based on body tex  size
+	inst.bHighPrio = (id == 4) # id 4 gets target high prio
 	if(is_instance_valid(troop_tex[id])):
 		inst.sprite.texture = troop_tex[id]
 	return inst

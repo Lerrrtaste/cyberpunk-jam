@@ -11,6 +11,9 @@ var target = null
 #ability 1
 var bFrozen := false
 
+##ability 3
+#var bOverriden := false
+
 func set_noderef()->void:
 	area_range = $AreaRange
 	area_body = $AreaBody
@@ -28,22 +31,31 @@ func _ready() -> void:
 #	update_target(null)
 
 func update_target(area:Area2D)->void:
+#	if(bOverriden):
+#		return
 	yield(get_tree().create_timer(0.01), "timeout") # prevent get_overlapping_areas() not being up to date
 	target = null
 	var in_reach = $AreaRange.get_overlapping_areas()
 	if(in_reach.size() == 0):
 		return
 	var closest
+	var bClosePrio := false
 	for i in in_reach:
+		if(i.get_node("../").bHighPrio):
+			bClosePrio = true
 		if(!is_instance_valid(closest)):
 			closest = i.get_node("../")
-		elif(closest.order_pos>i.get_node("../").order_pos):
+		elif(closest.order_pos>i.get_node("../").order_pos || (i.get_node("../").bHighPrio && bClosePrio)): # != == xor
 			closest = i.get_node("../")
 	target = closest
 	#print(self," updated target to ", target)
 
+#func target_override(troop:Node2D)->void:
+#	bOverriden = true
+#	target = troop
+
 func _process(delta: float) -> void:
-#	if(!is_instance_valid(target)):
+#	if(bOverriden && global_position.distance_to(target.global_position) > target):
 #		update_target()
 	if(is_instance_valid(attack) && !bFrozen):
 		attack.step(delta)

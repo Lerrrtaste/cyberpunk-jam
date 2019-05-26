@@ -59,8 +59,9 @@ func _on_attack_pressed()->void:
 	visible = false
 	$ItemList.clear()
 	for s in slots:
-		s.count_selected = 0
-		s.update_avail()
+		if(is_instance_valid(s)):
+			s.count_selected = 0
+			s.update_avail()
 	#queue_free()
 	
 func _on_moveleft_pressed()->void:

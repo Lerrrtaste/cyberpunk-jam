@@ -9,7 +9,7 @@ var bUsed = false
 
 func _ready() -> void:
 	randomize()
-	$Sprite.frame = randi()%2 
+	#$Sprite.frame = randi()%2 
 	set_process(false)
 	connect("area_entered",self,"_on_area_entered")
 

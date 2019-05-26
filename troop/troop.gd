@@ -15,12 +15,13 @@ var boost:float = 0.0
 var hp_max:int
 var hp:int
 var path = null
-var target = null
 var order_pos:int
 var dmg_pre := 0
 
 var bBuffed := false #ability0
 var bAb1 := false # attack 1
+
+var bHighPrio:bool
 
 signal died(inst)
 
@@ -29,6 +30,22 @@ func set_noderef()->void:
 	collision_shape = $Area2D/CollisionShape2D
 	sprite = $Sprite
 	hp = hp_max
+
+func _ready()->void:
+	$Sprite/Probe1.collide_with_areas = true
+	$Sprite/Probe1.collide_with_bodies = false
+	$Sprite/Probe2.collide_with_areas = true
+	$Sprite/Probe2.collide_with_bodies = false
+	$Sprite/Probe3.collide_with_areas = true
+	$Sprite/Probe3.collide_with_bodies = false
+	
+#	$Sprite/Probe1.exclude_parent = false
+#	$Sprite/Probe2.exclude_parent = false
+#	$Sprite/Probe3.exclude_parent = false
+	
+#	$Sprite/Probe1.add_exception(get_node("../"))
+#	$Sprite/Probe2.add_exception(get_node("../"))
+#	$Sprite/Probe3.add_exception(get_node("../"))
 
 func take_damage(dmg:int)->void:
 	if(hp-dmg <= 0):
@@ -66,9 +83,7 @@ func _process(delta: float) -> void:
 #		attack.step(delta)
 	if(is_instance_valid(ability)):
 		ability.step(delta)
-	var target_type = typeof(target)
-	if(target_type != TYPE_NIL):
-		Sprite.rotation = global_position.angle_to(target.global_position)
+	#Sprite.rotation = global_position.angle_to(target.global_position)
 	walk(delta)
 	#boost = clamp(boost-delta,0.0,99999.9)
 #	if(order_pos == 2 && boost != 0):
@@ -81,10 +96,14 @@ func walk(delta:float)->void:
 	move_along_path(delta*speed*(1.25 if boost > 0 else 1))
 
 func move_along_path(distance:float)->void:
+	if($Sprite/Probe1.is_colliding() || $Sprite/Probe2.is_colliding() || $Sprite/Probe3.is_colliding()):
+		print("Colliding")
+		return
 	if(typeof(path) == TYPE_NIL):
 		print("no path set!")
 		return
 	var start_pos:=position
+	var st :=position
 	for i in range(path.size()):
 		var dist_to_next:= start_pos.distance_to(path[0])
 		if(distance <= dist_to_next && distance >= 0.0): #can move less than next point, therefore move just towards
@@ -93,7 +112,7 @@ func move_along_path(distance:float)->void:
 		distance -= dist_to_next
 		start_pos = path[0]
 		path.remove(0)
-
+	$Sprite.rotation = position.angle_to_point(st)
 #ability 1 functionality + effect strength
 func ab1(val:bool)->void:
 	if(val && !bAb1):

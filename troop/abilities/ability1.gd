@@ -9,14 +9,12 @@ func _ready()->void:
 	$Cooldown.connect("timeout",self,"_on_timeout")
 
 func _on_timeout()->void:
-	print("froze")
 	var affecting = get_overlapping_areas()
-	for t in affecting.size():
-		if(is_instance_valid(affecting[t])):
-			if(!affecting[t].get_node("../").freeze(true)):
-				affecting.remove(t)
+	var blacklist:Array
+	for t in affecting:
+		if(!t.get_node("../").freeze(true)):
+			pass#blacklist.append(t) #TODO need a way to only unfreeze towers, frozen by self
 	yield(get_tree().create_timer(effect_length), "timeout")
 	for t in affecting:
 		t.get_node("../").freeze(false)
 	$Cooldown.start()
-	print("defroze")

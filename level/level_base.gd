@@ -19,7 +19,9 @@ var troop_path:PoolVector2Array
 var bAttacking := false
 var avail_troops:Dictionary = {	0 : 99,
 								1 : 99,
-								2 : 99} # TODO get from managing scene
+								2 : 99,
+								4 : 99,
+								5 : 99} # TODO get from managing scene
 
 # 2.0
 var money:int = 100
@@ -47,12 +49,14 @@ func _on_shop_pressed()->void:
 	$Planning.visible = !$Planning.visible
 
 func _on_spawn_timeout()->void:
+	while($SpawnCast.is_colliding()):
+		return
 	var inst = factory.new_troop(spawn_order[0])
 	add_child(inst)
 	#maybe troop setup? HERE
 	troops_alive.append(inst)
 	inst.order_pos = spawn_count
-	inst.boost(spawn_timer.wait_time*boost_count)
+	#inst.boost(spawn_timer.wait_time*boost_count)
 	spawn_count += 1
 	spawn_order.remove(0)
 	if(spawn_order.size() == 0):
