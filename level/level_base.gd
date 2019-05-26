@@ -21,7 +21,8 @@ var avail_troops:Dictionary = {	0 : 99,
 								1 : 99,
 								2 : 99,
 								4 : 99,
-								5 : 99} # TODO get from managing scene
+								5 : 99,
+								8 : 99} # TODO get from managing scene
 
 # 2.0
 var money:int = 100

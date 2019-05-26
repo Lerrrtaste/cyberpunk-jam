@@ -2,7 +2,6 @@ extends Node2D
 
 var area_range
 var area_body
-var collision_shape
 var body
 var barrel
 var attack = null
@@ -10,6 +9,8 @@ var target = null
 
 #ability 1
 var bFrozen := false
+var freeze_last := 0
+const freeze_cooldown := 2 * 1000
 
 ##ability 3
 #var bOverriden := false
@@ -17,13 +18,13 @@ var bFrozen := false
 func set_noderef()->void:
 	area_range = $AreaRange
 	area_body = $AreaBody
-	collision_shape = $Area2D/CollisionShape2D
 	body = $Body
 	barrel = $Barrel
 
 func _ready() -> void:
 	$AreaRange.connect("area_exited",self,"update_target")#"_on_area_exited")
 	$AreaRange.connect("area_entered",self,"update_target")
+	$Unfreeze.connect("timeout",self,"_on_unfreeze")
 
 #func _on_area_exited(area:Area2D)->void:
 #	target = null
@@ -66,11 +67,17 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	if(bFrozen):
-		draw_circle(Vector2(),10,ColorN("blue"))
+		draw_circle(Vector2(),40,ColorN("blue"))
 
 #ability 1
-func freeze(val:bool)->bool:
-	if(bFrozen == val): #frozen by other tower
+func freeze(val:bool,duration:float=1.0)->bool:
+	if(bFrozen == val || (val && OS.get_ticks_msec() - freeze_last < freeze_cooldown)): #frozen by other tower
 		return false
 	bFrozen = val
+	if(val):
+		freeze_last = OS.get_ticks_msec() if val else freeze_last
+		$Unfreeze.start(duration)
 	return true
+
+func _on_unfreeze()->void:
+	assert(freeze(false))

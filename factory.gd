@@ -72,8 +72,8 @@ func create_troopDB()->void:
 	troop_ability[4] = null
 	troop_ability[5] = preload("res://troop/abilities/ability2.tscn")
 	troop_ability[6] = null
-	troop_ability[7] = null
-	troop_ability[8] = null
+	troop_ability[7] = preload("res://troop/abilities/ability3.tscn")
+	troop_ability[8] = preload("res://troop/abilities/ability4.tscn")
 	troop_ability[9] = null
 	troop_ability[10] = null
 	troop_ability[11] = null
@@ -87,7 +87,7 @@ func create_troopDB()->void:
 	troop_hp[5] = 75
 	troop_hp[6] = 25
 	troop_hp[7] = null
-	troop_hp[8] = null
+	troop_hp[8] = 10
 	troop_hp[9] = null
 	troop_hp[10] = null
 	troop_hp[11] = null
@@ -101,7 +101,7 @@ func create_troopDB()->void:
 	troop_cost[5] = 250
 	troop_cost[6] = -1 # cant be bought
 	troop_cost[7] = null
-	troop_cost[8] = null
+	troop_cost[8] = 100
 	troop_cost[9] = null
 	troop_cost[10] = null
 	troop_cost[11] = null
@@ -117,7 +117,7 @@ func create_towerDB()->void:
 	tower_name[5] = "N/A"
 	tower_name[6] = "N/A"
 	tower_name[7] = "N/A"
-	tower_name[8] = "Keylogger"
+	tower_name[8] = "N/A"
 	tower_name[9] = "N/A"
 	tower_name[10] = "N/A"
 	tower_name[11] = "N/A"
