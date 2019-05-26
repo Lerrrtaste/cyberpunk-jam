@@ -112,7 +112,7 @@ func create_towerDB()->void:
 	tower_name[0] = "Anti-Malware"
 	tower_name[1] = "Firewall"
 	tower_name[2] = "N/A"
-	tower_name[3] = "N/A"
+	tower_name[3] = "Anti-Virus"
 	tower_name[4] = "N/A"
 	tower_name[5] = "N/A"
 	tower_name[6] = "N/A"
@@ -154,8 +154,8 @@ func create_towerDB()->void:
 	tower_attack[0] = preload("res://tower/attacks/attack0.tscn")
 	tower_attack[1] = preload("res://tower/attacks/attack1.tscn")
 	tower_attack[2] = null
-	tower_attack[3] = null
-	tower_attack[4] = null
+	tower_attack[3] = preload("res://tower/attacks/attack3.tscn")
+	tower_attack[4] = preload("res://tower/attacks/attack4.tscn")
 	tower_attack[5] = null
 	tower_attack[6] = null
 	tower_attack[7] = null

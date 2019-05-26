@@ -2,10 +2,12 @@ extends Node
 
 # Attack for tower id 0
 # simple shooting tower
+# also extended by attack 5 for twoer id 5 ai cor defense
+
 
 onready var area_range = get_node("../AreaRange")
 onready var timer = $Cooldown
-var projectile_scn = preload("res://helpers/projectile.tscn")
+var projectile_scn 
 
 var cake = "0111010001101000011001010010000001100011011000010110101101100101001000000110100101110011001000000110000100100000011011000110100101100101"
 var cidx := 0
@@ -13,6 +15,7 @@ var cidx := 0
 export(int) var rrange := 128+64-32
 
 func _ready() -> void:
+	projectile_scn = preload("res://helpers/projectile.tscn")
 	get_node("../AreaRange/CollisionShape2D").shape.radius = rrange
 	timer.connect("timeout",self,"_on_timeout")
 

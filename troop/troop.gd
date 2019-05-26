@@ -113,6 +113,7 @@ func move_along_path(distance:float)->void:
 		start_pos = path[0]
 		path.remove(0)
 	$Sprite.rotation = position.angle_to_point(st)
+
 #ability 1 functionality + effect strength
 func ab1(val:bool)->void:
 	if(val && !bAb1):
