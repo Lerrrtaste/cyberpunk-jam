@@ -16,11 +16,13 @@ var troop_ability:Array
 var troop_hp:Array
 var troop_cost:Array
 var troop_compdmg:Array
+var troop_unlockcost:Array
+
 func _init() -> void:
 	create_towerDB()
 	create_troopDB()
 
-#troop: name, tex, ability, hp, costtroop_compdmg
+#troop: name, tex, ability, hp, costtroop_compdmg, troop_unlockcost
 func create_troopDB()->void:
 	troop_name.resize(12)
 	troop_name[0] = "Exploit"
@@ -105,6 +107,20 @@ func create_troopDB()->void:
 	troop_cost[9] = null
 	troop_cost[10] = null
 	troop_cost[11] = null
+	
+	troop_unlockcost.resize(12)
+	troop_unlockcost[0] = 5
+	troop_unlockcost[1] = 15
+	troop_unlockcost[2] = 50
+	troop_unlockcost[3] = null
+	troop_unlockcost[4] = 110
+	troop_unlockcost[5] = 250
+	troop_unlockcost[6] = -1 # cant be bought
+	troop_unlockcost[7] = null
+	troop_unlockcost[8] = -1
+	troop_unlockcost[9] = null
+	troop_unlockcost[10] = null
+	troop_unlockcost[11] = null
 	
 	troop_compdmg.resize(12)
 	troop_compdmg[0] = 10

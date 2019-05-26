@@ -1,7 +1,7 @@
 extends Control
 
 onready var order_list := $ItemList 
-var troops_available:Dictionary
+var troops_unlocked:Dictionary
 var towers:Dictionary
 var slot_scn:PackedScene = preload("res://ui/planning_unitSlot.tscn")
 var slots:Array
@@ -89,13 +89,14 @@ func _process(delta:float)->void:
 func setup(avail_troops:Dictionary,towers:Dictionary)->void:
 	order_list.select_mode = order_list.SELECT_MULTI
 	
-	troops_available = avail_troops
+	#troops_unlocked = avail_troops
 	factory = factory_scn.new()
 	#create and setup troop planning_unitSlot scenes
-	for t in troops_available.keys():
+	for t in avail_troops.keys():
+		troops_unlocked[t] = true #(t == 8) ## all locked except keylogger # REMOVED FOR DBG
 		var inst = slot_scn.instance()
 		add_child(inst)#container_slots.add_child(inst)
-		inst.setup(t,troops_available.get(t))
+		inst.setup(t,99999999)
 #		slots.resize(slots.size()+1
 		if(slots.size()-1 < t):
 			slots.resize(t+1)
@@ -130,10 +131,13 @@ func order_update()->void:
 	for i in order_list.get_item_count():
 		order_list.set_item_text(i,("%s:%s"%[i,order_list.get_item_text(i).split(":")[1]]))
 
-func order_add(id:int)->void:
+func order_add(id:int)->bool:
+	if(!troops_unlocked[id]):
+		return false
 	if(bDisplayNames):
 		order_list.add_item("%s:%s"%[order_list.get_item_count(),factory.troop_name[id]],factory.troop_tex[id])
 		cost_total += factory.troop_cost[id]
 	else:
 		order_list.add_icon_item(factory.troop_tex[id])
 	order_list.set_item_metadata(order_list.get_item_count()-1,id)
+	return true

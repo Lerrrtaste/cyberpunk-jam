@@ -26,9 +26,9 @@ func setup(_id:int,count:int):
 
 func _on_pressed_inc()->void:
 	if(count_selected<count_max):
-		count_selected+=1
-		update_avail()
-		get_node("../").order_add(id)
+		if(get_node("../").order_add(id)):
+			count_selected+=1
+			update_avail()
 
 func _on_pressed_dec()->void:
 	if(count_selected>0):
@@ -37,4 +37,7 @@ func _on_pressed_dec()->void:
 		get_node("../").order_remove(id)
 	
 func update_avail()->void:
-	label_available.text = "%sx\n%s$"%[count_selected,factory.troop_cost[id]]
+	if(get_node("../").troops_unlocked[id]):
+		label_available.text = "%sx\n%s$\n=%s$"%[count_selected,factory.troop_cost[id],factory.troop_cost[id]*count_selected]
+	else:
+		label_available.text = "Unlock for\n%s$"%[factory.troop_cost[id]]
