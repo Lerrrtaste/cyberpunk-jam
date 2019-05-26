@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Placeholder/path_tset.tres" type="TileSet" id=1]
 [ext_resource path="res://level/level_base.gd" type="Script" id=2]
 [ext_resource path="res://ui/planning.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/dynfont_monts.tres" type="DynamicFontData" id=4]
+[ext_resource path="res://helpers/computer.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -38,3 +39,5 @@ margin_right = -250.0
 margin_bottom = 57.0
 custom_fonts/font = SubResource( 1 )
 text = "Open Shop"
+
+[node name="Computer" parent="." instance=ExtResource( 5 )]

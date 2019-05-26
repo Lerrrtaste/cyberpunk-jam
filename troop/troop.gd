@@ -17,6 +17,9 @@ var hp:int
 var path = null
 var order_pos:int
 var dmg_pre := 0
+var bFinished := false 
+
+var computer_dmg:int
 
 var bBuffed := false #ability0
 var bAb1 := false # attack 1
@@ -84,7 +87,8 @@ func _process(delta: float) -> void:
 	if(is_instance_valid(ability)):
 		ability.step(delta)
 	#Sprite.rotation = global_position.angle_to(target.global_position)
-	walk(delta)
+	if(!bFinished):
+		walk(delta)
 	#boost = clamp(boost-delta,0.0,99999.9)
 #	if(order_pos == 2 && boost != 0):
 #		#print(boost)
@@ -97,7 +101,7 @@ func walk(delta:float)->void:
 
 func move_along_path(distance:float)->void:
 	if($Sprite/Probe1.is_colliding() || $Sprite/Probe2.is_colliding() || $Sprite/Probe3.is_colliding()):
-		print("Colliding")
+		#print("Colliding")
 		return
 	if(typeof(path) == TYPE_NIL):
 		print("no path set!")
@@ -112,7 +116,16 @@ func move_along_path(distance:float)->void:
 		distance -= dist_to_next
 		start_pos = path[0]
 		path.remove(0)
+		if(path.size() == 0):
+			attack_computer()
 	$Sprite.rotation = position.angle_to_point(st)
+
+func attack_computer()->void:
+	assert(!bFinished)
+	bFinished = true
+	while(true):
+		get_node("../").get_node("Computer").computer_damage(computer_dmg)
+		yield(get_tree().create_timer(0.1), "timeout")
 
 #ability 1 functionality + effect strength
 func ab1(val:bool)->void:

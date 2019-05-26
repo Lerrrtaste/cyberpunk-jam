@@ -14,7 +14,7 @@ func _ready() -> void:
 	connect("area_entered",self,"_on_area_entered")
 
 func _on_area_entered(area:Area2D)->void:
-	if(!bUsed && area.get_node("../") == get_node("../").get_node("../").target):
+	if(!bUsed && area.get_node("../") == target):
 		bUsed = true
 		area.get_node("../").take_damage(damage)
 		visible = false
@@ -22,8 +22,8 @@ func _on_area_entered(area:Area2D)->void:
 
 
 func _process(delta: float) -> void:
-	if(!is_instance_valid(get_node("../").get_node("../").target)):
+	if(!is_instance_valid(target)):
 		print("attack scenes target invalid, projectile is destroying itself")
 		queue_free()
 	else:
-		global_position += (get_node("../").get_node("../").target.global_position - global_position).normalized() * speed * delta
+		global_position += (target.global_position - global_position).normalized() * speed * delta

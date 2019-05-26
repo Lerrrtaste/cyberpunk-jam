@@ -15,12 +15,12 @@ var troop_tex:Array
 var troop_ability:Array
 var troop_hp:Array
 var troop_cost:Array
-
+var troop_compdmg:Array
 func _init() -> void:
 	create_towerDB()
 	create_troopDB()
 
-#troop: name, tex, ability
+#troop: name, tex, ability, hp, costtroop_compdmg
 func create_troopDB()->void:
 	troop_name.resize(12)
 	troop_name[0] = "Exploit"
@@ -105,6 +105,20 @@ func create_troopDB()->void:
 	troop_cost[9] = null
 	troop_cost[10] = null
 	troop_cost[11] = null
+	
+	troop_compdmg.resize(12)
+	troop_compdmg[0] = 10
+	troop_compdmg[1] = 5
+	troop_compdmg[2] = 5
+	troop_compdmg[3] = 0
+	troop_compdmg[4] = 2
+	troop_compdmg[5] = 2
+	troop_compdmg[6] = 15
+	troop_compdmg[7] = null
+	troop_compdmg[8] = 0
+	troop_compdmg[9] = null
+	troop_compdmg[10] = null
+	troop_compdmg[11] = null
 
 #tower: name, tex_body, tex_barrel, attack
 func create_towerDB()->void:
@@ -202,6 +216,7 @@ func new_troop(id:int)->Node:
 		inst.add_child(inst_ability)
 		inst.ability = inst.get_node("Ability")
 	inst.set_noderef()
+	inst.computer_dmg = troop_compdmg[id]
 	inst.bHighPrio = (id == 4) # id 4 gets target high prio
 	if(is_instance_valid(troop_tex[id])):
 		inst.sprite.texture = troop_tex[id]

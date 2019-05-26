@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Placeholder/computer.png" type="Texture" id=1]
+[ext_resource path="res://helpers/computer.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 105.043
+
+[node name="Computer" type="Sprite"]
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
