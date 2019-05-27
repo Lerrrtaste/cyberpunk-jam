@@ -8,7 +8,8 @@ var bag:Array = [0,0,0,3] # inital towers
 
 func _ready() -> void:
 	for i in tower_pos_count:
-		tower_pos.append(get_node("Pos/TowerPos%s"%i))
+		if(i != 9 ||i != 19 ||i != 35 ||i != 58):
+			tower_pos.append(get_node("Pos/TowerPos%s"%i))
 	randomize()
 	tower_pos.shuffle()
 	
@@ -19,21 +20,17 @@ func _ready() -> void:
 	###start tower
 	var inst
 	inst = factory.new_tower(0)
-	tower_pos[9].add_child(inst)
+	$Pos/TowerPos9.add_child(inst)
 	
 	inst = factory.new_tower(0)
-	tower_pos[35].add_child(inst)
+	$Pos/TowerPos35.add_child(inst)
 	
 	inst = factory.new_tower(0)
-	tower_pos[19].add_child(inst)
+	$Pos/TowerPos19.add_child(inst)
 	
 	inst = factory.new_tower(0)
-	tower_pos[58].add_child(inst)
-	
-	tower_pos.remove(9)
-	tower_pos.remove(35)
-	tower_pos.remove(19)
-	tower_pos.remove(58)
+	$Pos/TowerPos58.add_child(inst)
+
 	
 	$Planning.setup(avail_troops,{0:3}) # second param is overwritten
 

@@ -19,7 +19,7 @@ animations = [ {
 collision_layer = 0
 collision_mask = 4
 script = ExtResource( 1 )
-speed = 130
+speed = 5
 damage = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

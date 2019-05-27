@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://troop/troop.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Placeholder/troop_tex.tres" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 18.0
@@ -11,10 +10,13 @@ position = Vector2( 24, 24 )
 script = ExtResource( 1 )
 speed = 50
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="Sprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+speed_scale = 2.0
+playing = true
 
 [node name="Probe1" type="RayCast2D" parent="Sprite"]
+scale = Vector2( 0.5, 0.5 )
 enabled = true
 cast_to = Vector2( 30, 0 )
 collision_mask = 66
@@ -23,6 +25,7 @@ collide_with_bodies = false
 
 [node name="Probe2" type="RayCast2D" parent="Sprite"]
 rotation = -0.785398
+scale = Vector2( 0.5, 0.5 )
 enabled = true
 cast_to = Vector2( 25, 0 )
 collision_mask = 66
@@ -31,6 +34,7 @@ collide_with_bodies = false
 
 [node name="Probe3" type="RayCast2D" parent="Sprite"]
 rotation = 0.785398
+scale = Vector2( 0.5, 0.5 )
 enabled = true
 cast_to = Vector2( 25, 0 )
 collision_mask = 66

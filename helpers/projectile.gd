@@ -12,6 +12,9 @@ func _ready() -> void:
 	#$Sprite.frame = randi()%2 
 	set_process(false)
 	connect("area_entered",self,"_on_area_entered")
+	$Sprite.rotation_degrees = 10-(randi() % 21)
+	var scalerand = randf() * 0.4
+	$Sprite.scale = Vector2(1.8 + scalerand,1.8 + scalerand)
 
 func _on_area_entered(area:Area2D)->void:
 	if(!bUsed && area.get_node("../") == target):
@@ -26,4 +29,4 @@ func _process(delta: float) -> void:
 		print("attack scenes target invalid, projectile is destroying itself")
 		queue_free()
 	else:
-		global_position += (target.global_position - global_position).normalized() * speed * delta
+		global_position += (((target.global_position - global_position) * speed * delta))

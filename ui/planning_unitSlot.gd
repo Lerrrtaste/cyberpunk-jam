@@ -11,6 +11,10 @@ func _ready() -> void:
 	$Inc.connect("pressed",self,"_on_pressed_inc")
 	$Dec.connect("pressed",self,"_on_pressed_dec")
 	$Unlock.connect("pressed",self,"_on_pressed_unlock")
+	$Info.connect("pressed",self,"_on_pressed_info")
+
+func _on_pressed_info():
+	$PopUpInfo.pop()
 
 func setup(_id:int,count:int):
 	print("Setup ", self , " with troop ID: ", _id)

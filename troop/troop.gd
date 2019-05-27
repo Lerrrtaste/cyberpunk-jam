@@ -8,6 +8,7 @@ var sprite
 var ability = null
 var tower_prio:Dictionary
 
+var dead_clone_scn = preload("res://helpers/dead_clone.tscn")
 export(int) var speed:int = 500
 var speed_og = speed
 var boost_multiplier:float = 1.0 #export(float) var boost_multiplier:float = 1.0 BROKEN DONT CHANGE
@@ -55,6 +56,9 @@ func take_damage(dmg:int)->void:
 		die()
 	hp -= dmg
 	update()
+	$Sprite.modulate = ColorN("red")
+	yield(get_tree().create_timer(0.025), "timeout")
+	$Sprite.modulate = ColorN("white")
 
 #func _unhandled_key_input(event: InputEventKey) -> void:
 #	if(event.scancode == KEY_T && event.pressed && order_pos == 2):
@@ -63,6 +67,12 @@ func take_damage(dmg:int)->void:
 func die()->void:
 	get_node("../").register_death(self)
 	emit_signal("died",self)
+	var inst = dead_clone_scn.instance()
+	inst.frames = $Sprite.frames
+	inst.animation = "dying"
+	inst.global_position = global_position
+	inst.rotation = $Sprite.rotation
+	get_node("../").add_child(inst)
 	visible=false
 	queue_free()
 

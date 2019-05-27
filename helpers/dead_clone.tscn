@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://helpers/dead_clone.gd" type="Script" id=1]
+
+[node name="DeadClone" type="AnimatedSprite"]
+scale = Vector2( 2, 2 )
+speed_scale = 2.0
+playing = true
+script = ExtResource( 1 )

@@ -11,10 +11,13 @@ func _ready()->void:
 func _on_timeout()->void:
 	var reaching = get_overlapping_areas()
 	var freezing:Array
+	get_node("../").sprite.animation = "active"
 	for t in reaching:
 		if(t.get_node("../").freeze(true,effect_length)):
 			freezing.append(t)
-#	yield(get_tree().create_timer(effect_length), "timeout")
+	yield(get_tree().create_timer(effect_length), "timeout")
+	if(get_node("../").sprite.animation == "active"):
+		get_node("../").sprite.animation = "default"
 #	for t in freezing:
 #		t.get_node("../").freeze(false)
 	$Cooldown.start(3 + randi()%3)

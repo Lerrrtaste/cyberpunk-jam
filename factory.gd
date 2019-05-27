@@ -17,12 +17,13 @@ var troop_hp:Array
 var troop_cost:Array
 var troop_compdmg:Array
 var troop_unlockcost:Array
+var troop_animtex:Array
 
 func _init() -> void:
 	create_towerDB()
 	create_troopDB()
 
-#troop: name, tex, ability, hp, costtroop_compdmg, troop_unlockcost
+#troop: name, tex, ability, hp, costtroop_compdmg, troop_unlockcost, troop_animtex
 func create_troopDB()->void:
 	troop_name.resize(12)
 	troop_name[0] = "Exploit"
@@ -51,6 +52,17 @@ func create_troopDB()->void:
 	troop_tex[9] = null
 	troop_tex[10] = null
 	troop_tex[11] = null
+	
+	troop_animtex.resize(12)
+	troop_animtex[0] = preload("res://Assets/troops/exploit_sprite.tres")
+	troop_animtex[1] = preload("res://Assets/troops/packet_sniffer_sprite.tres")
+	troop_animtex[2] = preload("res://Assets/troops/ddos_sprite.tres")
+	troop_animtex[3] = null
+	troop_animtex[4] = preload("res://Assets/troops/brute_force_sprite.tres")
+	troop_animtex[5] = preload("res://Assets/troops/worm_sprite.tres")
+	troop_animtex[6] = preload("res://Assets/troops/wormclone_sprite.tres")
+	troop_animtex[7] = null
+	troop_animtex[8] = preload("res://Assets/troops/keylogger_sprite.tres")
 	
 #	troop_attack.resize(12)
 #	troop_attack[0] = preload("res://troop/attacks/troop_attack_base.tscn")
@@ -234,6 +246,7 @@ func new_troop(id:int)->Node:
 	inst.set_noderef()
 	inst.computer_dmg = troop_compdmg[id]
 	inst.bHighPrio = (id == 4) # id 4 gets target high prio
-	if(is_instance_valid(troop_tex[id])):
-		inst.sprite.texture = troop_tex[id]
+	#if(troop_animtex[id]):
+	inst.sprite.frames = troop_animtex[id]
+	inst.sprite.animation = "walking"
 	return inst

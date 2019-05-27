@@ -16,8 +16,11 @@ func _on_timeout()->void:
 	inst.global_position = get_node("../").global_position
 	inst.path = get_node("../").path
 	inst.get_node("Sprite").rotation = get_node("../Sprite").rotation
+	get_node("../").sprite.animation = "active"
 	yield(get_tree().create_timer(0.5), "timeout")
 	get_node("../").get_node("../").add_child(inst)
+	if(get_node("../").sprite.animation == "active"):
+		get_node("../").sprite.animation = "default"
 	
 
 func step(delta:float)->void:
