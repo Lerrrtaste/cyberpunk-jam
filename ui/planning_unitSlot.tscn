@@ -25,6 +25,9 @@ margin_bottom = 90.0
 text = "NAME"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Inc" type="Button" parent="."]
 margin_left = 4.0
@@ -63,6 +66,16 @@ margin_top = 4.0
 margin_right = 17.0
 margin_bottom = 20.0
 text = "i"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Unlock" type="Button" parent="."]
+anchor_right = 1.0
+margin_top = 90.0
+margin_right = -4.0
+margin_bottom = 110.0
+text = "UNLOCK"
 __meta__ = {
 "_edit_lock_": true
 }

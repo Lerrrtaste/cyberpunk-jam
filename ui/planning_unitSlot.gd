@@ -10,6 +10,7 @@ var factory
 func _ready() -> void:
 	$Inc.connect("pressed",self,"_on_pressed_inc")
 	$Dec.connect("pressed",self,"_on_pressed_dec")
+	$Unlock.connect("pressed",self,"_on_pressed_unlock")
 
 func setup(_id:int,count:int):
 	print("Setup ", self , " with troop ID: ", _id)
@@ -24,6 +25,10 @@ func setup(_id:int,count:int):
 	#margin_right = 64
 	update_avail()
 
+func _process(delta: float) -> void:
+	if(get_node("../").troops_unlocked[id]):
+		$Unlock.visible = false
+
 func _on_pressed_inc()->void:
 	if(count_selected<count_max):
 		if(get_node("../").order_add(id)):
@@ -35,7 +40,10 @@ func _on_pressed_dec()->void:
 		count_selected-=1
 		update_avail()
 		get_node("../").order_remove(id)
-	
+
+func _on_pressed_unlock()->void:
+	get_node("../").request_unlock(id)
+
 func update_avail()->void:
 	if(get_node("../").troops_unlocked[id]):
 		label_available.text = "%sx\n%s$\n=%s$"%[count_selected,factory.troop_cost[id],factory.troop_cost[id]*count_selected]

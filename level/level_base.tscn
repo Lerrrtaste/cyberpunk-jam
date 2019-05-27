@@ -28,6 +28,8 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 default_color = Color( 0.85098, 0.0156863, 0.741176, 1 )
 texture_mode = 1065353216
 
+[node name="Computer" parent="." instance=ExtResource( 5 )]
+
 [node name="Planning" parent="." instance=ExtResource( 3 )]
 
 [node name="SpawnTimer" type="Timer" parent="."]
@@ -39,5 +41,3 @@ margin_right = -250.0
 margin_bottom = 57.0
 custom_fonts/font = SubResource( 1 )
 text = "Open Shop"
-
-[node name="Computer" parent="." instance=ExtResource( 5 )]

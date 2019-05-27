@@ -54,6 +54,7 @@ func _on_spawn_timeout()->void:
 		return
 	var inst = factory.new_troop(spawn_order[0])
 	add_child(inst)
+	$Planning.units_pending += 1
 	#maybe troop setup? HERE
 	troops_alive.append(inst)
 	inst.order_pos = spawn_count

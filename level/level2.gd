@@ -1,10 +1,10 @@
 extends "res://level/level_base.gd"
 
-const tower_pos_count = 54
+const tower_pos_count = 72
 const path_pos_count = 14
 var path_pos:Array
 var tower_pos:Array
-var bag:Array
+var bag:Array = [0,0,0,3] # inital towers
 
 func _ready() -> void:
 	for i in tower_pos_count:
@@ -16,6 +16,24 @@ func _ready() -> void:
 		path_pos.append(get_node("PosPath/PosPath%s"%i))
 	tower_pos.shuffle()
 	
+	###start tower
+	var inst
+	inst = factory.new_tower(0)
+	tower_pos[9].add_child(inst)
+	
+	inst = factory.new_tower(0)
+	tower_pos[35].add_child(inst)
+	
+	inst = factory.new_tower(0)
+	tower_pos[19].add_child(inst)
+	
+	inst = factory.new_tower(0)
+	tower_pos[58].add_child(inst)
+	
+	tower_pos.remove(9)
+	tower_pos.remove(35)
+	tower_pos.remove(19)
+	tower_pos.remove(58)
 	
 	$Planning.setup(avail_troops,{0:3}) # second param is overwritten
 
@@ -40,7 +58,7 @@ func spawn_tower()->bool:
 	return false
 
 func _process(delta:float) -> void:
-	$MoneyLabel/Money.text = "%s$"%$Planning.money
+	$Info/Money.text = "%s$"%$Planning.money
 
 #random bag algr
 func get_next_type() -> int:

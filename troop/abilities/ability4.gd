@@ -3,7 +3,7 @@ extends Timer
 # ability for id 8 keylogger
 # generates x$/s or 2*x$/s if next to other keylogger
 
-export(int) var mps:int = 3
+export(int) var mps:int = 2
 
 func _ready() -> void:
 	connect("timeout",self,"_on_timeout")
