@@ -90,3 +90,4 @@ func start_attack(order_array:Array, spawn_rate:float )->void:
 	
 	spawn_order = order_array
 	spawn_timer.start(spawn_rate)
+

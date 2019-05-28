@@ -34,16 +34,18 @@ func _process(delta: float) -> void:
 		$Unlock.visible = false
 
 func _on_pressed_inc()->void:
-	if(count_selected<count_max):
-		if(get_node("../").order_add(id)):
-			count_selected+=1
-			update_avail()
+	for i in get_node("../").amount_selected:
+		if(count_selected<count_max):
+			if(get_node("../").order_add(id)):
+				count_selected+=1
+				update_avail()
 
 func _on_pressed_dec()->void:
-	if(count_selected>0):
-		count_selected-=1
-		update_avail()
-		get_node("../").order_remove(id)
+	for i in get_node("../").amount_selected:
+		if(count_selected>0):
+			count_selected-=1
+			update_avail()
+			get_node("../").order_remove(id)
 
 func _on_pressed_unlock()->void:
 	get_node("../").request_unlock(id)

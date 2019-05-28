@@ -11,15 +11,20 @@ var factory
 var bMoving := false
 var moving_start:Vector2
 
-var bDisplayNames := true #TODO disable whan all troops have textures
+var bDisplayNames := false #TODO disable whan all troops have textures
 
 # 2.0
 var cost_total := 0
-var money := 420
+var money := 400
+
+var amount_selected := 1
+const amounts := [1,5,20]
+var amount_idx := 1
 
 var units_pending := 0
 const units_per_tower := 5
 const skip_reward_tower := 100
+const spawn_speed := 1 # sec between spawn
 
 func _ready()->void:
 	order_list.max_columns = 500
@@ -30,10 +35,17 @@ func _ready()->void:
 	$MoveLeft.connect("pressed",self,"_on_moveleft_pressed")
 	$MoveRight.connect("pressed",self,"_on_moveright_pressed")
 	$DeleteSelction.connect("pressed",self,"_on_delete_pressed")
-	$HSlider.connect("value_changed",self,"_on_slider_change")
+	$Amount.connect("pressed",self,"_on_amount_pressed")
 	
 	get_node("../").get_node("Info/NextTower/Skip").connect("pressed",self,"_on_pressed_skip")
 	get_node("../").get_node("Info/NextTower").max_value = units_per_tower
+
+func _on_amount_pressed()->void:
+	if(amount_idx >= amounts.size()):
+		amount_idx = 0
+	amount_selected = amounts[amount_idx]
+	$Amount.text = "%sx"%amount_selected
+	amount_idx += 1
 
 func _on_slider_change(value:float)->void:
 	$SliderDesc.text = "Spawn cooldown\n%ss"%str(value*1)
@@ -67,7 +79,7 @@ func _on_attack_pressed()->void:
 	
 	for i in order_list.get_item_count():
 		order_array.append(order_list.get_item_metadata(i))
-	get_node("../").start_attack(order_array, $HSlider.value) #might wanna pass junction selection for pathfinding
+	get_node("../").start_attack(order_array, spawn_speed) #might wanna pass junction selection for pathfinding
 	visible = false
 	$ItemList.clear()
 	for s in slots:
@@ -90,7 +102,7 @@ func _on_moveright_pressed()->void:
 	order_update()
 
 func _process(delta:float)->void:
-	$CostTotal.text = "BALANCE: %s$\n\nCOST: %s$"%[money,cost_total]
+	$CostTotal.text = "TOTAL COST:\n%s$"%[cost_total]
 	get_node("../").get_node("Info/NextTower").value = units_pending
 	get_node("../").get_node("Info/NextTower/Name").text = "%s viruses until\nnew defense"%(units_per_tower-units_pending)
 	get_node("../").get_node("Info/NextTower/Skip").text = "Skip for %s$"%((units_per_tower-units_pending) * skip_reward_tower)
@@ -136,14 +148,14 @@ func setup(avail_troops:Dictionary,towers:Dictionary)->void:
 			slots.resize(t+1)
 		slots[t] = inst
 #		yield(get_tree().create_timer(0.3), "timeout")
-		inst.margin_bottom = 150+200
+		inst.margin_bottom = 230+200
 #		yield(get_tree().create_timer(0.3), "timeout")
 		inst.margin_right = ((spacing+1))*(64-8)+8 # TODO add placeholders in between
 #		yield(get_tree().create_timer(0.3), "timeout")
 		inst.margin_left = ((spacing+1)-1)*(64+8)
 #		yield(get_tree().create_timer(0.3), "timeout")
-		inst.margin_top = 200
-		inst.rect_size = Vector2(64,150)
+		inst.margin_top = 280
+		inst.rect_size = Vector2(64,165)
 
 func order_remove(id:int)->void:
 	cost_total -= factory.troop_cost[id]

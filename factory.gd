@@ -40,15 +40,15 @@ func create_troopDB()->void:
 	troop_name[11] = "N/A"
 	
 	troop_tex.resize(12)
-	troop_tex[0] = preload("res://Assets/Placeholder/troop_tex.tres")
-	troop_tex[1] = preload("res://Assets/Placeholder/troop_tex.tres")
-	troop_tex[2] = preload("res://Assets/Placeholder/troop_tex.tres")
-	troop_tex[3] = preload("res://Assets/Placeholder/troop_tex.tres")
-	troop_tex[4] = preload("res://Assets/Placeholder/troop_tex.tres")
-	troop_tex[5] = preload("res://Assets/Placeholder/troop_tex.tres")
-	troop_tex[6] = preload("res://Assets/Placeholder/troop_tex.tres")
-	troop_tex[7] = preload("res://Assets/Placeholder/troop_tex.tres")
-	troop_tex[8] = preload("res://Assets/Placeholder/troop_tex.tres")
+	troop_tex[0] = preload("res://Assets/troops/exploit_icon.png")
+	troop_tex[1] = preload("res://Assets/troops/packet_sniffer_icon.png")
+	troop_tex[2] = preload("res://Assets/troops/ddos_icon.png")
+	troop_tex[3] = null
+	troop_tex[4] = preload("res://Assets/troops/brute_force_icon.png")
+	troop_tex[5] = preload("res://Assets/troops/worm_icon.png")
+	troop_tex[6] = null
+	troop_tex[7] = null
+	troop_tex[8] = preload("res://Assets/troops/keylogger_icon.png")
 	troop_tex[9] = null
 	troop_tex[10] = null
 	troop_tex[11] = null
@@ -165,11 +165,11 @@ func create_towerDB()->void:
 	tower_name[11] = "N/A"
 	
 	tower_tex_body.resize(12)
-	tower_tex_body[0] = preload("res://Assets/Placeholder/tower_body_tex.tres")
-	tower_tex_body[1] = preload("res://Assets/Placeholder/tower_body_tex.tres")
+	tower_tex_body[0] = preload("res://Assets/tower/antimalware_base.tres")
+	tower_tex_body[1] = preload("res://Assets/tower/firewall_base.tres")
 	tower_tex_body[2] = preload("res://Assets/Placeholder/tower_body_tex.tres")
-	tower_tex_body[3] = preload("res://Assets/Placeholder/tower_body_tex.tres")
-	tower_tex_body[4] = preload("res://Assets/Placeholder/tower_body_tex.tres")
+	tower_tex_body[3] = preload("res://Assets/tower/antivirus_base.tres")
+	tower_tex_body[4] = preload("res://Assets/tower/acesscontro_inactive.tres")
 	tower_tex_body[5] = preload("res://Assets/Placeholder/tower_body_tex.tres")
 	tower_tex_body[6] = null
 	tower_tex_body[7] = null
@@ -179,7 +179,7 @@ func create_towerDB()->void:
 	tower_tex_body[11] = null
 	
 	tower_tex_barrel.resize(12)
-	tower_tex_barrel[0] = preload("res://Assets/Placeholder/tower_barrel_tex.tres")
+	tower_tex_barrel[0] = preload("res://Assets/tower/antimalware_barrel.tres")
 	tower_tex_barrel[1] = null
 	tower_tex_barrel[2] = null
 	tower_tex_barrel[3] = null

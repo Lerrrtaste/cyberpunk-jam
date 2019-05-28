@@ -9,6 +9,7 @@ var ability = null
 var tower_prio:Dictionary
 
 var dead_clone_scn = preload("res://helpers/dead_clone.tscn")
+var popup_scn = preload("res://helpers/popup.tscn")
 export(int) var speed:int = 500
 var speed_og = speed
 var boost_multiplier:float = 1.0 #export(float) var boost_multiplier:float = 1.0 BROKEN DONT CHANGE
@@ -36,6 +37,7 @@ func set_noderef()->void:
 	hp = hp_max
 
 func _ready()->void:
+	$Sprite/Probe1.position = Vector2(-6+randi()%5,0)
 	$Sprite/Probe1.collide_with_areas = true
 	$Sprite/Probe1.collide_with_bodies = false
 	$Sprite/Probe2.collide_with_areas = true
@@ -52,10 +54,14 @@ func _ready()->void:
 #	$Sprite/Probe3.add_exception(get_node("../"))
 
 func take_damage(dmg:int)->void:
+	get_node("../").get_node("LCamera").add_trauma(0.1)
 	if(hp-dmg <= 0):
 		die()
 	hp -= dmg
 	update()
+	var inst = popup_scn.instance()
+	inst.text = "-%s"%dmg
+	add_child(inst)
 	$Sprite.modulate = ColorN("red")
 	yield(get_tree().create_timer(0.025), "timeout")
 	$Sprite.modulate = ColorN("white")
@@ -65,6 +71,7 @@ func take_damage(dmg:int)->void:
 #		take_damage(50)
 
 func die()->void:
+	get_node("../").get_node("LCamera").set_trauma(1.0)
 	get_node("../").register_death(self)
 	emit_signal("died",self)
 	var inst = dead_clone_scn.instance()
@@ -86,8 +93,8 @@ func _draw()->void:
 	if(bBuffed):
 		draw_circle(Vector2(),15,ColorN("green"))
 	if(hp<hp_max):
-		draw_rect(Rect2(Vector2(-15,-25),Vector2(30,7)),ColorN("black",0.5))
-		draw_rect(Rect2(Vector2(-15,-25),Vector2(30*hp/hp_max,7)),ColorN("red"))
+		draw_rect(Rect2(Vector2(-15,-25),Vector2(30,4)),ColorN("black",0.5))
+		draw_rect(Rect2(Vector2(-15,-25),Vector2(30*hp/hp_max,4)),ColorN("red"))
 
 func _process(delta: float) -> void:
 	update()

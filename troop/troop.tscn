@@ -16,9 +16,10 @@ speed_scale = 2.0
 playing = true
 
 [node name="Probe1" type="RayCast2D" parent="Sprite"]
+position = Vector2( -5, 0 )
 scale = Vector2( 0.5, 0.5 )
 enabled = true
-cast_to = Vector2( 30, 0 )
+cast_to = Vector2( 35, 0 )
 collision_mask = 66
 collide_with_areas = true
 collide_with_bodies = false

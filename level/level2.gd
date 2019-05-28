@@ -4,7 +4,7 @@ const tower_pos_count = 72
 const path_pos_count = 14
 var path_pos:Array
 var tower_pos:Array
-var bag:Array = [0,0,0,3] # inital towers
+var bag:Array = [0,0,3] # inital towers
 
 func _ready() -> void:
 	for i in tower_pos_count:
@@ -37,6 +37,8 @@ func _ready() -> void:
 func _unhandled_key_input(event: InputEventKey) -> void:
 	if(event.scancode == KEY_T && event.pressed):
 		spawn_tower()
+	if(event.scancode == KEY_S && event.pressed):
+		$LCamera.add_trauma(0.25)
 
 func spawn_tower()->bool:
 	var ntype = get_next_type()
@@ -62,7 +64,7 @@ func get_next_type() -> int:
 	randomize()
 	#empty bag check
 	if(bag.size() == 0):
-		bag = [0,0,0,0,0,1,1,3,3,4]#range(2) # WHAT TOWER IDs AVAILABLE | TODO exclude 4 if no pos path avail anymore
+		bag = [0,0,0,0,1,1,3,3,4]#range(2) # WHAT TOWER IDs AVAILABLE | TODO exclude 4 if no pos path avail anymore
 		bag.shuffle()
 	#get front element
 	return bag.pop_front() #REMOVED FOR DBG ONLY
