@@ -1,14 +1,14 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://shaders/crt_material.tres" type="Material" id=1]
-[ext_resource path="res://LCamera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/info.tscn" type="PackedScene" id=2]
 [ext_resource path="res://level/level2.gd" type="Script" id=3]
 [ext_resource path="res://Assets/tower/computer.tres" type="Texture" id=4]
 [ext_resource path="res://Assets/terrain_tset.tres" type="TileSet" id=5]
 [ext_resource path="res://level/level_base.tscn" type="PackedScene" id=6]
-[ext_resource path="res://ui/info.tscn" type="PackedScene" id=7]
+[ext_resource path="res://LCamera.tscn" type="PackedScene" id=7]
 
-[node name="Level2" index="0" instance=ExtResource( 6 )]
+[node name="Level2" instance=ExtResource( 6 )]
 script = ExtResource( 3 )
 
 [node name="TileMap" parent="Navigation2D" index="0"]
@@ -283,7 +283,7 @@ position = Vector2( 512, 448 )
 [node name="PosPath14" type="Position2D" parent="PosPath" index="13"]
 position = Vector2( 704, 704 )
 
-[node name="Info" parent="." index="6" instance=ExtResource( 7 )]
+[node name="Info" parent="." index="6" instance=ExtResource( 2 )]
 
 [node name="Computer" parent="." index="7"]
 position = Vector2( 480, 600 )
@@ -301,7 +301,7 @@ collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="LCamera" parent="." index="12" instance=ExtResource( 2 )]
+[node name="LCamera" parent="." index="12" instance=ExtResource( 7 )]
 position = Vector2( 500, 500 )
 traumaPow = 2
 bDisplayDebug = false
@@ -314,3 +314,5 @@ material = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="14"]

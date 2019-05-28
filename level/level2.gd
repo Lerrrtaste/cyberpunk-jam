@@ -12,6 +12,7 @@ func _ready() -> void:
 			tower_pos.append(get_node("Pos/TowerPos%s"%i))
 	randomize()
 	tower_pos.shuffle()
+	$AudioStreamPlayer.stream = preload("res://Assets/sfx/tower_spawn.wav")
 	
 	for i in path_pos_count:
 		path_pos.append(get_node("PosPath/PosPath%s"%i))
@@ -40,6 +41,7 @@ func _unhandled_key_input(event: InputEventKey) -> void:
 	
 
 func spawn_tower()->bool:
+	$AudioStreamPlayer.play()
 	var ntype = get_next_type()
 	var inst = factory.new_tower(ntype)
 	var instp

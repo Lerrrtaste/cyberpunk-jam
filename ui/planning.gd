@@ -72,6 +72,9 @@ func _on_pressed_skip()->void:
 
 func _on_attack_pressed()->void:
 	if(cost_total > money):
+		$Attack.text = "Too expensive!"
+		return
+	if($ItemList.get_item_count() == 0):
 		return
 	money -= cost_total
 	cost_total = 0
@@ -86,6 +89,7 @@ func _on_attack_pressed()->void:
 		if(is_instance_valid(s)):
 			s.count_selected = 0
 			s.update_avail()
+	$Attack.text = "Buy&Attack"
 	#queue_free()
 	
 func _on_moveleft_pressed()->void:

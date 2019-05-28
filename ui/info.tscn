@@ -14,24 +14,21 @@ anchor_left = 0.832
 anchor_right = 1.0
 anchor_bottom = 0.16
 margin_left = 18.0
-margin_bottom = -10.0
+margin_bottom = -50.0
 
 [node name="Money" type="Label" parent="."]
-margin_left = 7.0
-margin_top = 100.0
-margin_right = 143.0
-margin_bottom = 82.0
+anchor_right = 1.0
+margin_top = 90.0
+margin_bottom = 104.0
 text = "asdasdasdasdasd"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="NextTower" type="ProgressBar" parent="."]
+anchor_right = 1.0
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 143.0
+margin_right = -7.0
 margin_bottom = 25.0
 custom_styles/fg = SubResource( 1 )
 value = 50.0
@@ -44,13 +41,11 @@ margin_right = 1.0
 margin_bottom = 34.0
 text = "units till nesxt tower"
 align = 1
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Skip" type="Button" parent="NextTower"]
+anchor_right = 1.0
 margin_left = 7.0
-margin_top = 57.0
-margin_right = 86.0
-margin_bottom = 77.0
+margin_top = 53.0
+margin_right = -7.0
+margin_bottom = 73.0
 text = "skip buten"

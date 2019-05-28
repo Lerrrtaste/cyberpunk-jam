@@ -7,11 +7,14 @@ func step(delta:float)->void:
 
 func _ready()->void:
 	$Cooldown.connect("timeout",self,"_on_timeout")
+	get_node("../").get_node("AudioStreamPlayer").stream = preload("res://Assets/sfx/tower_freeze.wav")
+	get_node("../").get_node("AudioStreamPlayer").bus = "Projectiles"
 
 func _on_timeout()->void:
 	var reaching = get_overlapping_areas()
 	var freezing:Array
 	get_node("../").sprite.animation = "active"
+	get_node("../").get_node("AudioStreamPlayer").play()
 	for t in reaching:
 		if(t.get_node("../").freeze(true,effect_length)):
 			freezing.append(t)

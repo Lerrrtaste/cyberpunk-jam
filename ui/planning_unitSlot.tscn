@@ -63,6 +63,7 @@ margin_left = 4.0
 margin_top = 4.0
 margin_right = 17.0
 margin_bottom = 20.0
+mouse_default_cursor_shape = 16
 text = "i"
 __meta__ = {
 "_edit_lock_": true

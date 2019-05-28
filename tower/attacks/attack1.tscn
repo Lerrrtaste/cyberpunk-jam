@@ -3,7 +3,7 @@
 [ext_resource path="res://tower/attacks/attack1.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 96.0
+radius = 70.0
 
 [node name="Attack" type="Area2D"]
 collision_layer = 0

@@ -1,6 +1,6 @@
 extends Node
 
-# Attack for tower id 0
+# Attack for tower id 0 anti malware
 # simple shooting tower
 # also extended by attack 5 for twoer id 5 ai cor defense
 
@@ -18,9 +18,11 @@ func _ready() -> void:
 	projectile_scn = preload("res://helpers/projectile.tscn")
 	get_node("../AreaRange/CollisionShape2D").shape.radius = rrange
 	timer.connect("timeout",self,"_on_timeout")
+	get_node("../").get_node("AudioStreamPlayer").stream = preload("res://Assets/sfx/tower_antimalware_firing.wav")
 
 func _on_timeout()->void:
 	if(is_instance_valid(get_node("../").target) && !get_node("../").bFrozen):
+		get_node("../").get_node("AudioStreamPlayer").play()
 		var inst = projectile_scn.instance()
 		add_child(inst)
 		if(cidx >= cake.length()):

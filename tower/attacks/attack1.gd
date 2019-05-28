@@ -1,6 +1,6 @@
 extends Area2D
 
-# Ability for tower id 1
+# Ability for tower id 1 
 # weakens enemys in range
 # range set manually in collison shape 2d node
 # effect strength set in set_ab1(...) in troop gd
