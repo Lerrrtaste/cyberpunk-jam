@@ -13,6 +13,7 @@ var cidx := 0
 var targets:Array
 
 func _ready() -> void:
+	$AudioStreamPlayer.stream = preload("res://Assets/sfx/attack_computer.wav")
 	$Area2D.connect("area_entered",self,"_on_area_entered")
 	$Area2D.connect("area_exited",self,"_on_area_exited")
 	timer.connect("timeout",self,"_on_timeout")
@@ -31,6 +32,7 @@ func _process(delta: float) -> void:
 
 #copied from attack 0
 func _on_timeout()->void:
+	$AudioStreamPlayer.play()
 	for t in targets:
 		var inst = projectile_scn.instance()
 		add_child(inst)
@@ -51,5 +53,5 @@ func computer_damage(dmg:int)->void:
 		print("damaged really")
 
 func _draw() -> void:
-	draw_rect(Rect2(Vector2(-60,-60),Vector2(120,16)),ColorN("black",1.0))
-	draw_rect(Rect2(Vector2(-60,-60),Vector2(120*hp/hp_max,16)),ColorN("green"))
+	draw_rect(Rect2(Vector2(-50,-35),Vector2(100,10)),ColorN("black",1.0))
+	draw_rect(Rect2(Vector2(-50,-35),Vector2(100*hp/hp_max,10)),ColorN("green"))

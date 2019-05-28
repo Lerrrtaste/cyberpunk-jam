@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/death_ddos.wav-632d124d83b88b0b2866f0cb00ad7bee.sample"
+
+[deps]
+
+source_file="res://Assets/sfx/death_ddos.wav"
+dest_files=[ "res://.import/death_ddos.wav-632d124d83b88b0b2866f0cb00ad7bee.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

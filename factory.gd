@@ -18,6 +18,7 @@ var troop_cost:Array
 var troop_compdmg:Array
 var troop_unlockcost:Array
 var troop_animtex:Array
+var troop_deathsound:Array
 
 func _init() -> void:
 	create_towerDB()
@@ -93,18 +94,27 @@ func create_troopDB()->void:
 	troop_ability[11] = null
 
 	troop_hp.resize(12)
-	troop_hp[0] = 100
-	troop_hp[1] = 25
-	troop_hp[2] = 25
+	troop_hp[0] = 100 # explopit
+	troop_hp[1] = 25 # packet sniffer
+	troop_hp[2] = 25 # ddos
 	troop_hp[3] = null
-	troop_hp[4] = 500
-	troop_hp[5] = 75
-	troop_hp[6] = 25
+	troop_hp[4] = 500 # brute force
+	troop_hp[5] = 75 # worm
+	troop_hp[6] = 25 # worm clone
 	troop_hp[7] = null
-	troop_hp[8] = 10
+	troop_hp[8] = 10 # keylogger
 	troop_hp[9] = null
 	troop_hp[10] = null
 	troop_hp[11] = null
+	
+	troop_deathsound.resize(12)
+	troop_deathsound[0] = preload("res://Assets/sfx/death_exploit.wav") # explopit
+	troop_deathsound[1] = preload("res://Assets/sfx/death_packetsniffer.wav") # packet sniffer
+	troop_deathsound[2] = preload("res://Assets/sfx/death_ddos.wav") # ddos
+	troop_deathsound[4] = preload("res://Assets/sfx/death_bruteforce.wav") # brute force
+	troop_deathsound[5] = preload("res://Assets/sfx/death_worm.wav") # worm
+	troop_deathsound[6] = preload("res://Assets/sfx/death_wormclone.wav") #worm clone
+	troop_deathsound[8] = preload("res://Assets/sfx/death_keylogger.wav") # keylogger
 	
 	troop_cost.resize(12)
 	troop_cost[0] = 5
@@ -138,7 +148,7 @@ func create_troopDB()->void:
 	troop_compdmg[0] = 10
 	troop_compdmg[1] = 5
 	troop_compdmg[2] = 5
-	troop_compdmg[3] = 0
+	troop_compdmg[3] = null
 	troop_compdmg[4] = 2
 	troop_compdmg[5] = 2
 	troop_compdmg[6] = 15
@@ -244,6 +254,7 @@ func new_troop(id:int)->Node:
 		inst.add_child(inst_ability)
 		inst.ability = inst.get_node("Ability")
 	inst.set_noderef()
+	inst.death_sound = troop_deathsound[id]
 	inst.computer_dmg = troop_compdmg[id]
 	inst.bHighPrio = (id == 4) # id 4 gets target high prio
 	#if(troop_animtex[id]):

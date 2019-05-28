@@ -1,6 +1,30 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://test.gd" type="Script" id=1]
+[ext_resource path="res://ui/Montserrat-Bold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 128
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 2 )
 
 [node name="Test" type="Node"]
 script = ExtResource( 1 )
@@ -8,11 +32,9 @@ script = ExtResource( 1 )
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Level1" type="Button" parent="Control"]
+visible = false
 anchor_left = 0.094
 anchor_top = 0.107
 anchor_right = 0.263
@@ -24,12 +46,63 @@ margin_bottom = 1.0
 text = "Level 1"
 
 [node name="Level2" type="Button" parent="Control"]
-anchor_left = 0.094
-anchor_top = 0.107
-anchor_right = 0.263
-anchor_bottom = 0.266
-margin_left = 397.784
-margin_top = 32.133
-margin_right = 397.784
-margin_bottom = 32.133
-text = "Level 2\\n"
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -50.0
+margin_right = 150.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 125, 50 )
+custom_fonts/font = SubResource( 1 )
+text = "Play"
+
+[node name="Label" type="Label" parent="Control"]
+anchor_top = 0.137
+anchor_right = 1.0
+anchor_bottom = 0.294
+margin_top = 0.219955
+margin_bottom = 0.219971
+custom_fonts/font = SubResource( 2 )
+text = "Core Defense"
+align = 1
+valign = 1
+
+[node name="LinkButton" type="Button" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 350.0
+margin_top = 590.557
+margin_right = -350.0
+margin_bottom = -353.443
+custom_fonts/font = SubResource( 3 )
+text = "Vote for us <3"
+
+[node name="HowToPlay" type="RichTextLabel" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 550.0
+margin_right = -780.0
+margin_bottom = -158.0
+custom_fonts/italics_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "How to Play
+[i]<how to play here>[/i]"
+text = "How to Play
+<how to play here>"
+
+[node name="Credits" type="RichTextLabel" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 779.571
+margin_top = 550.0
+margin_bottom = -169.688
+custom_fonts/italics_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[right]Credits
+[i]<how to play here>[i/]"
+text = "Credits
+<how to play here>[i/]"

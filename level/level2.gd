@@ -35,10 +35,9 @@ func _ready() -> void:
 	$Planning.setup(avail_troops,{0:3}) # second param is overwritten
 
 func _unhandled_key_input(event: InputEventKey) -> void:
-	if(event.scancode == KEY_T && event.pressed):
-		spawn_tower()
-	if(event.scancode == KEY_S && event.pressed):
-		$LCamera.add_trauma(0.25)
+	if(event.scancode == KEY_ESCAPE && event.pressed):
+		get_tree().change_scene("res://test.tscn")
+	
 
 func spawn_tower()->bool:
 	var ntype = get_next_type()

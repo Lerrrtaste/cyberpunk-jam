@@ -4,7 +4,7 @@
 [ext_resource path="res://helpers/computer.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 105.043
+radius = 50.0
 
 [node name="Computer" type="Sprite"]
 texture = ExtResource( 1 )
@@ -21,3 +21,5 @@ shape = SubResource( 1 )
 [node name="Cooldown" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

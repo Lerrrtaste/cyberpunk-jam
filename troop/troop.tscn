@@ -8,7 +8,7 @@ radius = 18.0
 [node name="Troop" type="Node2D"]
 position = Vector2( 24, 24 )
 script = ExtResource( 1 )
-speed = 50
+speed = 100
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )

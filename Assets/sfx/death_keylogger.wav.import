@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/death_keylogger.wav-6c3c11930268a3fb4715a1c3a5f375ef.sample"
+
+[deps]
+
+source_file="res://Assets/sfx/death_keylogger.wav"
+dest_files=[ "res://.import/death_keylogger.wav-6c3c11930268a3fb4715a1c3a5f375ef.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

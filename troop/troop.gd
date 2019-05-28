@@ -21,6 +21,8 @@ var order_pos:int
 var dmg_pre := 0
 var bFinished := false 
 
+var death_sound
+
 var computer_dmg:int
 
 var bBuffed := false #ability0
@@ -79,6 +81,8 @@ func die()->void:
 	inst.animation = "dying"
 	inst.global_position = global_position
 	inst.rotation = $Sprite.rotation
+	inst.get_node("AudioStreamPlayer").stream = death_sound
+	inst.get_node("AudioStreamPlayer").play()
 	get_node("../").add_child(inst)
 	visible=false
 	queue_free()

@@ -7,7 +7,7 @@
 [ext_resource path="res://Assets/terrain_tset.tres" type="TileSet" id=5]
 [ext_resource path="res://level/level_base.tscn" type="PackedScene" id=6]
 
-[node name="Level2" index="0" instance=ExtResource( 6 )]
+[node name="Level2" instance=ExtResource( 6 )]
 script = ExtResource( 3 )
 
 [node name="TileMap" parent="Navigation2D" index="0"]
@@ -18,7 +18,7 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 6, 0, 2, 6, 0, 3, 6, 0, 4, 6, 0, 5, 6, 0, 
 position = Vector2( 32, 0 )
 
 [node name="TroopEnd" parent="." index="2"]
-position = Vector2( 500, 760 )
+position = Vector2( 480, 660 )
 
 [node name="Pos" type="Node" parent="." index="3"]
 
@@ -285,7 +285,7 @@ position = Vector2( 704, 704 )
 [node name="Info" parent="." index="6" instance=ExtResource( 2 )]
 
 [node name="Computer" parent="." index="7"]
-position = Vector2( 480, 590 )
+position = Vector2( 480, 600 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 
