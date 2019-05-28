@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/tower_antivirus_firing.wav-28827bd7867cb3bfc2a84d67390962b4.sample"
+
+[deps]
+
+source_file="res://Assets/sfx/tower_antivirus_firing.wav"
+dest_files=[ "res://.import/tower_antivirus_firing.wav-28827bd7867cb3bfc2a84d67390962b4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

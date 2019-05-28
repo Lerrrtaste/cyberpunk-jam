@@ -19,10 +19,10 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 32
 font_data = ExtResource( 2 )
 
@@ -85,8 +85,8 @@ anchor_bottom = 1.0
 margin_top = 550.0
 margin_right = -780.0
 margin_bottom = -158.0
-custom_fonts/italics_font = SubResource( 5 )
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/italics_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
 bbcode_text = "How to Play
 [i]<how to play here>[/i]"
@@ -99,8 +99,8 @@ anchor_bottom = 1.0
 margin_left = 779.571
 margin_top = 550.0
 margin_bottom = -169.688
-custom_fonts/italics_font = SubResource( 5 )
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/italics_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
 bbcode_text = "[right]Credits
 [i]<how to play here>[i/]"

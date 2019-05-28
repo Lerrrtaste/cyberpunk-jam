@@ -13,7 +13,7 @@ var cidx := 0
 var targets:Array
 
 func _ready() -> void:
-	$AudioStreamPlayer.stream = preload("res://Assets/sfx/attack_computer.wav")
+	$AudioStreamPlayer.stream = preload("res://Assets/sfx/computer_firing.wav")
 	$Area2D.connect("area_entered",self,"_on_area_entered")
 	$Area2D.connect("area_exited",self,"_on_area_exited")
 	timer.connect("timeout",self,"_on_timeout")
@@ -32,10 +32,10 @@ func _process(delta: float) -> void:
 
 #copied from attack 0
 func _on_timeout()->void:
-	$AudioStreamPlayer.play()
 	for t in targets:
 		var inst = projectile_scn.instance()
 		add_child(inst)
+		$AudioStreamPlayer.play()
 		if(cidx >= cake.length()):
 			cidx = 0
 		inst.get_node("Sprite").frame = 0 if cake[cidx] == "0" else 1
