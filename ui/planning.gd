@@ -15,7 +15,7 @@ var bDisplayNames := false #TODO disable whan all troops have textures
 
 # 2.0
 var cost_total := 0
-var money := 400
+var money := 25
 
 var amount_selected := 1
 const amounts := [1,5,20]
@@ -23,8 +23,8 @@ var amount_idx := 1
 
 var units_pending := 0
 const units_per_tower := 5
-const skip_reward_tower := 100
-const spawn_speed := 1 # sec between spawn
+const skip_reward_tower := 10
+export(float) var spawn_speed:float = 1.0 # sec between spawn
 
 func _ready()->void:
 	order_list.max_columns = 500
@@ -37,10 +37,14 @@ func _ready()->void:
 	$DeleteSelction.connect("pressed",self,"_on_delete_pressed")
 	$Amount.connect("pressed",self,"_on_amount_pressed")
 	
+	$AttackAudio.stream = preload("res://Assets/sfx/ui_attack.wav")
+	$ClickAudio.stream = preload("res://Assets/sfx/ui_click.wav")
+	
 	get_node("../").get_node("Info/NextTower/Skip").connect("pressed",self,"_on_pressed_skip")
 	get_node("../").get_node("Info/NextTower").max_value = units_per_tower
 
 func _on_amount_pressed()->void:
+	$ClickAudio.play()
 	if(amount_idx >= amounts.size()):
 		amount_idx = 0
 	amount_selected = amounts[amount_idx]
@@ -52,21 +56,25 @@ func _on_slider_change(value:float)->void:
 	print("Happened")
 	
 func _on_delete_pressed()->void:
+	$ClickAudio.play()
 	var run := 0
 	for i in order_list.get_selected_items():
 		slots[order_list.get_item_metadata(i-run)]._on_pressed_dec()
 		run += 1
 
 func _on_move_down()->void:
+	$ClickAudio.play()
 	assert(!bMoving)
 	bMoving = true
 	moving_start = Vector2(margin_left,margin_top)-get_viewport().get_mouse_position()
 	
 func _on_move_up()->void:
+	$ClickAudio.play()
 	assert(bMoving)
 	bMoving = false
 
 func _on_pressed_skip()->void:
+	$ClickAudio.play()
 	money += skip_reward_tower * (units_per_tower - units_pending)
 	units_pending = units_per_tower
 
@@ -79,7 +87,7 @@ func _on_attack_pressed()->void:
 	money -= cost_total
 	cost_total = 0
 	var order_array:Array
-	
+	$AttackAudio.play()
 	for i in order_list.get_item_count():
 		order_array.append(order_list.get_item_metadata(i))
 	get_node("../").start_attack(order_array, spawn_speed) #might wanna pass junction selection for pathfinding
@@ -93,12 +101,14 @@ func _on_attack_pressed()->void:
 	#queue_free()
 	
 func _on_moveleft_pressed()->void:
+	$ClickAudio.play()
 	for i in order_list.get_selected_items():
 		if(i>0):
 			order_list.move_item(i,i-1)
 	order_update()
 
 func _on_moveright_pressed()->void:
+	$ClickAudio.play()
 	for i in order_list.get_selected_items():
 		print(i,i<order_list.get_item_count())
 		if(i<order_list.get_item_count()):
@@ -118,7 +128,8 @@ func _process(delta:float)->void:
 		margin_left = moving_start.x + get_viewport().get_mouse_position().x
 		margin_top = moving_start.y + get_viewport().get_mouse_position().y
 		margin_right = margin_left
-		margin_bottom = margin_top
+		margin_bottom = margin_top + 20
+		
 		
 func setup(avail_troops:Dictionary,towers:Dictionary)->void:
 	order_list.select_mode = order_list.SELECT_MULTI
@@ -159,10 +170,11 @@ func setup(avail_troops:Dictionary,towers:Dictionary)->void:
 		inst.margin_left = ((spacing+1)-1)*(64+8)
 #		yield(get_tree().create_timer(0.3), "timeout")
 		inst.margin_top = 280
-		inst.rect_size = Vector2(64,165)
+		inst.rect_size = Vector2(64,175)
 
 func order_remove(id:int)->void:
 	cost_total -= factory.troop_cost[id]
+	$ClickAudio.play()
 	if(order_list.is_anything_selected()): #look in selection first
 		for s in order_list.get_selected_items():
 			if(order_list.get_item_metadata(s) == id):
@@ -186,8 +198,10 @@ func request_unlock(id:int)->void:
 		troops_unlocked[id] = true
 		money -= factory.troop_unlockcost[id]
 		print(id, " unlocked")
+		$ClickAudio.play()
 
 func order_add(id:int)->bool:
+	$ClickAudio.play()
 	if(!troops_unlocked[id]):
 		return false
 	if(bDisplayNames):

@@ -14,10 +14,10 @@ func _on_timeout()->void:
 	var reaching = get_overlapping_areas()
 	var freezing:Array
 	get_node("../").sprite.animation = "active"
-	get_node("../").get_node("AudioStreamPlayer").play()
 	for t in reaching:
 		if(t.get_node("../").freeze(true,effect_length)):
 			freezing.append(t)
+			get_node("../").get_node("AudioStreamPlayer").play()
 	yield(get_tree().create_timer(effect_length), "timeout")
 	if(get_node("../").sprite.animation == "active"):
 		get_node("../").sprite.animation = "default"

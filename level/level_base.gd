@@ -45,6 +45,10 @@ func _ready() -> void:
 	$ButtonShop.connect("pressed",self,"_on_shop_pressed")
 #	planning = planning_scn.instance()
 #	add_child(planning)
+	troop_path = nav2d.get_simple_path(troop_start.position,troop_end.position,false)
+	if(!display_debug):
+		$Line2D.visible = false 
+	$Line2D.points = troop_path
 
 func _on_shop_pressed()->void:
 	$Planning.visible = !$Planning.visible
@@ -53,7 +57,7 @@ func _on_spawn_timeout()->void:
 	while($SpawnCast.is_colliding()):
 		return
 	var inst = factory.new_troop(spawn_order[0])
-	add_child(inst)
+	add_child_below_node($PosPath,inst)
 	inst.global_position.y = -50
 	$Planning.units_pending += 1
 	#maybe troop setup? HERE
@@ -83,10 +87,7 @@ func start_attack(order_array:Array, spawn_rate:float )->void:
 	$ButtonShop.visible = false
 	#assert(bAttacking == false)
 	#bAttacking = true
-	troop_path = nav2d.get_simple_path(troop_start.position,troop_end.position,false)
-	if(!display_debug):
-		$Line2D.visible = false 
-	$Line2D.points = troop_path
+	
 	
 	spawn_order = order_array
 	spawn_timer.start(spawn_rate)

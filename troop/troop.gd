@@ -152,7 +152,7 @@ func attack_computer()->void:
 func ab1(val:bool)->void:
 	if(val && !bAb1):
 		speed_og = speed
-		speed = speed * .5
+		speed = speed * .85
 		bAb1 = true
 		#hp -= 
 	else:

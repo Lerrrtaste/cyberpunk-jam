@@ -4,7 +4,7 @@ const tower_pos_count = 72
 const path_pos_count = 14
 var path_pos:Array
 var tower_pos:Array
-var bag:Array = [0,0,3] # inital towers
+var bag:Array # inital towers
 
 func _ready() -> void:
 	for i in tower_pos_count:
@@ -13,6 +13,8 @@ func _ready() -> void:
 	randomize()
 	tower_pos.shuffle()
 	$AudioStreamPlayer.stream = preload("res://Assets/sfx/tower_spawn.wav")
+	$BGPlayer.stream = preload("res://Assets/bg.ogg")
+	$BGPlayer.play()
 	
 	for i in path_pos_count:
 		path_pos.append(get_node("PosPath/PosPath%s"%i))
@@ -34,6 +36,14 @@ func _ready() -> void:
 
 	
 	$Planning.setup(avail_troops,{0:3}) # second param is overwritten
+	$BtnRestart.connect("pressed",self,"_on_restart_pressed")
+	$ConfirmationDialog.connect("confirmed",self,"_on_restart_confirmed")
+
+func _on_restart_pressed()->void:
+	$ConfirmationDialog.popup_centered()
+
+func _on_restart_confirmed()->void:
+	get_tree().change_scene("res://level/level2.tscn")
 
 func _unhandled_key_input(event: InputEventKey) -> void:
 	if(event.scancode == KEY_ESCAPE && event.pressed):
@@ -59,6 +69,8 @@ func spawn_tower()->bool:
 
 func _process(delta:float) -> void:
 	$Info/Money.text = "%s$"%$Planning.money
+	if($BGPlayer.playing == false):
+		$BGPlayer.play(68)
 
 #random bag algr
 func get_next_type() -> int:

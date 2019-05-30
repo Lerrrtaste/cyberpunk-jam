@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ui_click.wav-a32fe53372047a71f44fe3b54dfb5593.sample"
+
+[deps]
+
+source_file="res://Assets/sfx/ui_click.wav"
+dest_files=[ "res://.import/ui_click.wav-a32fe53372047a71f44fe3b54dfb5593.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -36,3 +36,4 @@ shape = SubResource( 2 )
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = "Tower"

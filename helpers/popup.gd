@@ -5,6 +5,7 @@ var font = preload("res://ui/dynfont_popup.tres")
 
 var target_pos := Vector2(-5+randi()%11,-30+randi()%11)
 const speed := 20
+var color := ColorN("red")
 
 func _ready() -> void:
 	update()
@@ -13,7 +14,7 @@ func _ready() -> void:
 	$Timer.connect("timeout",self,"_on_timeout")
 
 func _draw() -> void:
-	draw_string(font, Vector2(), text, ColorN("red"))
+	draw_string(font, Vector2(), text, color)
 
 func _process(delta: float) -> void:
 	global_position += (target_pos - global_position)/speed

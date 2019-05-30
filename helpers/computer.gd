@@ -29,6 +29,8 @@ func _on_area_exited(area:Area2D)->void:
 
 func _process(delta: float) -> void:
 	update()
+	if(hp <= 0):
+		get_tree().change_scene("res://win_screen.tscn")
 
 #copied from attack 0
 func _on_timeout()->void:
@@ -47,7 +49,7 @@ func _on_timeout()->void:
 
 func computer_damage(dmg:int)->void:
 	if(hp-dmg <= 0):
-		pass #GAME OVER TODO
+		get_tree().change_scene("res://win_screen.tscn")
 	else:
 		hp -= dmg
 		print("damaged really")

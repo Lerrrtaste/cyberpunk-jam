@@ -10,8 +10,13 @@ func _ready() -> void:
 	connect("timeout",self,"_on_timeout")
 
 func _on_timeout()->void:
+	var mult = randi()%(mps+1)
 	get_node("../").sprite.animation = "active"
-	get_node("../").get_node("../Planning").money += mps # TODO double if next to other keylogger
+	get_node("../").get_node("../Planning").money += mps+mult # TODO double if next to other keylogger
+	var inst = popup_scn.instance()
+	inst.text = "+%s$"%(mps+mult)
+	inst.color = ColorN("green")
+	get_node("../").add_child(inst)
 #	var inst = popup_scn.instance()
 #	inst.text = "+%s$"%mps
 #	inst.position = get_node("../").position

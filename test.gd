@@ -22,4 +22,4 @@ func _btn_lvl2()->void:
 	get_tree().change_scene("res://level/level2.tscn")
 
 func _btn_vote()->void:
-	OS.shell_open("https://positive-zero.itch.io/cyberpunk-core-defense")
+	OS.shell_open("https://positive-zero.itch.io/cyberpunk-core-defense") # TODO change

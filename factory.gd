@@ -35,7 +35,7 @@ func create_troopDB()->void:
 	troop_name[5] = "Worm"
 	troop_name[6] = "Worm Clone"
 	troop_name[7] = "Spoof"
-	troop_name[8] = "Keylogger"
+	troop_name[8] = "\nKeylogger"
 	tower_name[9] = "N/A"
 	tower_name[10] = "N/A"
 	troop_name[11] = "N/A"
@@ -97,16 +97,11 @@ func create_troopDB()->void:
 	troop_hp[0] = 100 # explopit
 	troop_hp[1] = 25 # packet sniffer
 	troop_hp[2] = 25 # ddos
-	troop_hp[3] = null
 	troop_hp[4] = 500 # brute force
 	troop_hp[5] = 75 # worm
 	troop_hp[6] = 25 # worm clone
-	troop_hp[7] = null
 	troop_hp[8] = 10 # keylogger
-	troop_hp[9] = null
-	troop_hp[10] = null
-	troop_hp[11] = null
-	
+
 	troop_deathsound.resize(12)
 	troop_deathsound[0] = preload("res://Assets/sfx/death_exploit.wav") # explopit
 	troop_deathsound[1] = preload("res://Assets/sfx/death_packetsniffer.wav") # packet sniffer
@@ -117,32 +112,23 @@ func create_troopDB()->void:
 	troop_deathsound[8] = preload("res://Assets/sfx/death_keylogger.wav") # keylogger
 	
 	troop_cost.resize(12)
-	troop_cost[0] = 5
-	troop_cost[1] = 15
-	troop_cost[2] = 50
-	troop_cost[3] = null
-	troop_cost[4] = 110
-	troop_cost[5] = 250
-	troop_cost[6] = -1 # cant be bought
-	troop_cost[7] = null
-	troop_cost[8] = 100
-	troop_cost[9] = null
-	troop_cost[10] = null
-	troop_cost[11] = null
+	troop_cost[0] = 5# explopit
+	troop_cost[1] = 15 # packet sniffer
+	troop_cost[2] = 20# ddos
+	troop_cost[4] = 50# brute force
+	troop_cost[5] = 75 # worm
+	troop_cost[6] = -1 # worm clone # cant be bought
+	troop_cost[8] = 5# keylogger
+
 	
 	troop_unlockcost.resize(12)
-	troop_unlockcost[0] = 5
-	troop_unlockcost[1] = 15
-	troop_unlockcost[2] = 50
-	troop_unlockcost[3] = null
-	troop_unlockcost[4] = 110
-	troop_unlockcost[5] = 250
-	troop_unlockcost[6] = -1 # cant be bought
-	troop_unlockcost[7] = null
-	troop_unlockcost[8] = -1
-	troop_unlockcost[9] = null
-	troop_unlockcost[10] = null
-	troop_unlockcost[11] = null
+	troop_unlockcost[0] = 25# explopit
+	troop_unlockcost[1] = 50# packet sniffer
+	troop_unlockcost[2] = 75# ddos
+	troop_unlockcost[4] = 100# brute force
+	troop_unlockcost[5] = 150 # worm
+	troop_unlockcost[6] = -1  # worm clone # cant be bought
+	troop_unlockcost[8] = -1# keylogger # always unlocked
 	
 	troop_compdmg.resize(12)
 	troop_compdmg[0] = 10

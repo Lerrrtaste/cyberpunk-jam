@@ -49,9 +49,10 @@ func _on_pressed_dec()->void:
 
 func _on_pressed_unlock()->void:
 	get_node("../").request_unlock(id)
+	update_avail()
 
 func update_avail()->void:
 	if(get_node("../").troops_unlocked[id]):
 		label_available.text = "%sx\n%s$\n=%s$"%[count_selected,factory.troop_cost[id],factory.troop_cost[id]*count_selected]
 	else:
-		label_available.text = "Unlock for\n%s$"%[factory.troop_cost[id]]
+		label_available.text = "for\n%s$"%[factory.troop_cost[id]]
