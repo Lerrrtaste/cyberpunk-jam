@@ -19,8 +19,9 @@ func _ready() -> void:
 	timer.connect("timeout",self,"_on_timeout")
 
 func _on_area_entered(area:Area2D)->void:
-	targets.append(area.get_node("../"))
-	
+	if(targets.size() == 0):
+		targets = [area.get_node("../")]
+
 func _on_area_exited(area:Area2D)->void:
 	for i in targets.size():
 		if(area.get_node("../") == targets[i]):

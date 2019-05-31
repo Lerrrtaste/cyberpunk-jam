@@ -102,11 +102,11 @@ bbcode_enabled = true
 bbcode_text = "How to Play
 [i]You are trying to hack the servers of
 Big Corp. Ltd. Their server core is at the end of a well protected data highway.
-Send enough viruses to destroy the server core at the end. But be carefull, the more viruses you send, the more defense systems Big Corp. Ltd will install![/i]"
+You must send enough viruses to destroy the server core at the end. But be carefull, the more viruses you send, the more defense systems Big Corp. Ltd will install![/i]"
 text = "How to Play
 You are trying to hack the servers of
 Big Corp. Ltd. Their server core is at the end of a well protected data highway.
-Send enough viruses to destroy the server core at the end. But be carefull, the more viruses you send, the more defense systems Big Corp. Ltd will install!"
+You must send enough viruses to destroy the server core at the end. But be carefull, the more viruses you send, the more defense systems Big Corp. Ltd will install!"
 
 [node name="Credits" type="RichTextLabel" parent="Control"]
 anchor_right = 1.0
@@ -145,4 +145,4 @@ Lerrrtaste
 margin_left = 4.54431
 margin_right = 183.544
 margin_bottom = 48.0
-text = "jam_build_09"
+text = "jam_build_10"

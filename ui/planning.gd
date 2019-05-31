@@ -116,7 +116,13 @@ func _on_moveright_pressed()->void:
 	order_update()
 
 func _process(delta:float)->void:
+	$MoveLeft.disabled = ($ItemList.get_selected_items().size() == 0)
+	$MoveRight.disabled = $MoveLeft.disabled
 	$CostTotal.text = "TOTAL COST:\n%s$"%[cost_total]
+	if(cost_total > money):
+		$CostTotal.add_color_override("font_color",ColorN("red"))
+	else:
+		$CostTotal.add_color_override("font_color",ColorN("black"))
 	get_node("../").get_node("Info/NextTower").value = units_pending
 	get_node("../").get_node("Info/NextTower/Name").text = "%s viruses until\nnew defense"%(units_per_tower-units_pending)
 	get_node("../").get_node("Info/NextTower/Skip").text = "Skip for %s$"%((units_per_tower-units_pending) * skip_reward_tower)
@@ -129,8 +135,8 @@ func _process(delta:float)->void:
 		margin_top = moving_start.y + get_viewport().get_mouse_position().y
 		margin_right = margin_left
 		margin_bottom = margin_top + 20
-		
-		
+
+
 func setup(avail_troops:Dictionary,towers:Dictionary)->void:
 	order_list.select_mode = order_list.SELECT_MULTI
 	
@@ -207,7 +213,7 @@ func order_add(id:int)->bool:
 	if(bDisplayNames):
 		order_list.add_item("%s:%s"%[order_list.get_item_count(),factory.troop_name[id]],factory.troop_tex[id])
 	else:
-		order_list.add_icon_item(factory.troop_tex[id])
+		order_list.add_item(str($ItemList.get_item_count()),factory.troop_tex[id])
 	cost_total += factory.troop_cost[id]
 	order_list.set_item_metadata(order_list.get_item_count()-1,id)
 	return true

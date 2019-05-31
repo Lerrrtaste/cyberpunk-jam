@@ -94,13 +94,13 @@ func create_troopDB()->void:
 	troop_ability[11] = null
 
 	troop_hp.resize(12)
-	troop_hp[0] = 100 # explopit
-	troop_hp[1] = 25 # packet sniffer
-	troop_hp[2] = 25 # ddos
-	troop_hp[4] = 500 # brute force
-	troop_hp[5] = 75 # worm
-	troop_hp[6] = 25 # worm clone
-	troop_hp[8] = 10 # keylogger
+	troop_hp[0] = 150 # explopit
+	troop_hp[1] = 100 # packet sniffer
+	troop_hp[2] = 100 # ddos
+	troop_hp[4] = 550 # brute force
+	troop_hp[5] = 150 # worm
+	troop_hp[6] = 75 # worm clone
+	troop_hp[8] = 50 # keylogger
 
 	troop_deathsound.resize(12)
 	troop_deathsound[0] = preload("res://Assets/sfx/death_exploit.wav") # explopit

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://ui/stat_popup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/planning_unitSlot.gd" type="Script" id=2]
-[ext_resource path="res://ui/stat_popup.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/Montserrat-Light.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]
@@ -10,17 +10,17 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFontData" id=3]
+[sub_resource type="DynamicFontData" id=2]
 font_path = "res://ui/Montserrat-Light.ttf"
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 14
 use_mipmaps = true
 use_filter = true
 extra_spacing_bottom = -2
-font_data = SubResource( 3 )
+font_data = SubResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=4]
 size = 14
 font_data = ExtResource( 4 )
 
@@ -48,30 +48,28 @@ valign = 2
 autowrap = true
 
 [node name="Inc" type="Button" parent="."]
-margin_left = 4.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -24.0
 margin_top = 90.0
+margin_right = -7.0
 text = "+"
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Dec" type="Button" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -24.0
+margin_left = 4.0
 margin_top = 90.0
-margin_right = -4.0
+margin_right = 24.0
 margin_bottom = 110.0
 text = "-"
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Avail" type="Label" parent="."]
 margin_top = 114.0
 margin_right = 64.0
 margin_bottom = 135.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "x of x"
 align = 1
 valign = 1
@@ -93,10 +91,10 @@ margin_left = -5.19116
 margin_top = 87.8025
 margin_right = 4.80884
 margin_bottom = 114.803
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "UNLOCK"
 
-[node name="PopUpInfo" parent="." instance=ExtResource( 3 )]
+[node name="PopUpInfo" parent="." instance=ExtResource( 1 )]
 margin_left = 91.008
 margin_top = 51.4914
 margin_right = 91.008

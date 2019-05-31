@@ -15,11 +15,11 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 12
 use_mipmaps = true
 use_filter = true
@@ -67,7 +67,7 @@ margin_left = 120.0
 margin_top = -55.0
 margin_right = -120.0
 margin_bottom = -7.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 shortcut_in_tooltip = false
 text = "Buy&Attack"
 
@@ -95,9 +95,6 @@ margin_top = 250.0
 margin_right = 180.0
 margin_bottom = 272.0
 text = "<-"
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="MoveRight" type="Button" parent="."]
 margin_left = 325.0
@@ -117,7 +114,7 @@ margin_left = 127.0
 margin_top = -272.0
 margin_right = -123.0
 margin_bottom = -220.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "COST TOTAL"
 align = 1
