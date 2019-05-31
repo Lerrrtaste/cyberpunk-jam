@@ -83,7 +83,7 @@ func die()->void:
 	inst.rotation = $Sprite.rotation
 	inst.get_node("AudioStreamPlayer").stream = death_sound
 	inst.get_node("AudioStreamPlayer").play()
-	get_node("../").add_child(inst)
+	get_node("../").add_child_below_node(self,inst)
 	visible=false
 	queue_free()
 

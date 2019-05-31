@@ -9,8 +9,8 @@ radius = 96.0
 collision_layer = 16
 collision_mask = 16
 script = ExtResource( 1 )
-buff = 0.25
-buff_reach = 1
+buff = 2.0
+buff_reach = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

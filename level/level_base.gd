@@ -52,6 +52,7 @@ func _ready() -> void:
 
 func _on_shop_pressed()->void:
 	$Planning.visible = !$Planning.visible
+	$ButtonShop.text = "Close" if $Planning.visible else "Plan new attack"
 
 func _on_spawn_timeout()->void:
 	while($SpawnCast.is_colliding()):

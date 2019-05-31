@@ -132,7 +132,7 @@ func _process(delta:float)->void:
 	
 	if(bMoving):
 		margin_left = moving_start.x + get_viewport().get_mouse_position().x
-		margin_top = moving_start.y + get_viewport().get_mouse_position().y
+		margin_top = clamp(moving_start.y + get_viewport().get_mouse_position().y,-200,5200)
 		margin_right = margin_left
 		margin_bottom = margin_top + 20
 
@@ -162,7 +162,7 @@ func setup(avail_troops:Dictionary,towers:Dictionary)->void:
 				spacing = 7
 		troops_unlocked[t] = (t == 8) ## all locked except keylogger # REMOVED FOR DBG
 		var inst = slot_scn.instance()
-		add_child(inst)#container_slots.add_child(inst)
+		add_child_below_node($ItemList,inst)#container_slots.add_child(inst)
 		inst.setup(t,99999999)
 #		slots.resize(slots.size()+1
 		if(slots.size()-1 < t):
@@ -194,10 +194,11 @@ func order_remove(id:int)->void:
 				return
 
 func order_update()->void:
-	if(!bDisplayNames):
-		return
 	for i in order_list.get_item_count():
-		order_list.set_item_text(i,("%s:%s"%[i,order_list.get_item_text(i).split(":")[1]]))
+		if(!bDisplayNames):
+			order_list.set_item_text(i, str(i))
+		else:
+			order_list.set_item_text(i,("%s:%s"%[i,order_list.get_item_text(i).split(":")[1]]))
 
 func request_unlock(id:int)->void:
 	if(money >= factory.troop_unlockcost[id] && !troops_unlocked[id]):

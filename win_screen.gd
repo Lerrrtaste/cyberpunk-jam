@@ -15,7 +15,7 @@ func _ready() -> void:
 		$BtnExit.visible = false
 
 func _on_vote_pressed()->void:
-	OS.shell_open("https://positive-zero.itch.io/cyberpunk-core-defense") #TODO change
+	OS.shell_open("https://itch.io/jam/cyberpunk-jam-2019/rate/429490") #TODO change
 
 func _on_exit_pressed()->void:
 	get_tree().quit()

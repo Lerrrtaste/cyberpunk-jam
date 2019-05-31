@@ -100,7 +100,7 @@ func create_troopDB()->void:
 	troop_hp[4] = 550 # brute force
 	troop_hp[5] = 150 # worm
 	troop_hp[6] = 75 # worm clone
-	troop_hp[8] = 50 # keylogger
+	troop_hp[8] = 10 # keylogger
 
 	troop_deathsound.resize(12)
 	troop_deathsound[0] = preload("res://Assets/sfx/death_exploit.wav") # explopit

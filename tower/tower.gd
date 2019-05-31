@@ -76,8 +76,8 @@ func freeze(val:bool,duration:float=1.0)->bool:
 	bFrozen = val
 	if(val):
 		freeze_last = OS.get_ticks_msec() if val else freeze_last
-		$Unfreeze.start(duration)
+	$Unfreeze.start(duration)
 	return true
 
 func _on_unfreeze()->void:
-	assert(freeze(false))
+	freeze(false)

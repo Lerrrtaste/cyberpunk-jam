@@ -18,15 +18,15 @@ func _on_body_entered(area:Area2D)->void:
 		return
 	#print("entered")
 	var t = area.get_node("../")
-	t.hp = int(t.hp * (1.0+buff))
-	t.hp_max = int(t.hp_max * (1.0+buff))
+	t.hp = int(t.hp * (buff))
+	t.hp_max = int(t.hp_max * (buff))
 	t.bBuffed = true
 	
 func _on_body_exited(area:Area2D)->void:
 	#print("de - entered")
 	var t = area.get_node("../")
-	t.hp = int(t.hp * (1.0-buff))
-	t.hp_max = int(t.hp_max * (1.0-buff))
+	t.hp = int(t.hp * (-buff))
+	t.hp_max = int(t.hp_max * (-buff))
 	t.bBuffed = false
 
 func _unhandled_key_input(event: InputEventKey) -> void:
